@@ -6,6 +6,7 @@ import { TbAlertTriangle, TbTimeline } from "react-icons/tb";
 import ReportModal from "@/components/report-modal";
 import CounterPlaceholder from "@/components/counter-placeholder";
 import CounterIncidentView from "@/components/counter-incident-view";
+import DetourList from "@/components/detour-list";
 import NormalDayView from "@/components/counter-normal-day";
 import { LAST_INCIDENT_DATE } from "@/lib/incidents";
 import { useDaysSince } from "@/lib/use-days-since";
@@ -19,7 +20,10 @@ export default function HomePage() {
       {days === null ? (
         <CounterPlaceholder />
       ) : days === 0 ? (
-        <CounterIncidentView />
+        <>
+          <CounterIncidentView />
+          <DetourList />
+        </>
       ) : (
         <NormalDayView days={days} />
       )}
