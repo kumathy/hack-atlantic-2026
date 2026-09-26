@@ -1,4 +1,4 @@
-import { BRIDGE, LAST_INCIDENT_DATE } from "@/lib/incidents";
+import { LAST_INCIDENT_DATE } from "@/lib/incidents";
 import { formatLongDate } from "@/lib/dates";
 import CounterLayout from "@/components/counter-layout";
 
@@ -12,8 +12,8 @@ export default function NormalDayView({
   return (
     <CounterLayout
       top={
-        <h1 className="font-display font-black text-[clamp(1.75rem,5vw,3rem)] leading-tight text-ink">
-          {BRIDGE.name}
+        <h1 className="font-display font-black text-[clamp(2.5rem,8vw,4.5rem)] leading-tight text-ink">
+          Thorpe Watch
         </h1>
       }
       middle={

@@ -1,4 +1,3 @@
-import { BRIDGE } from "@/lib/incidents";
 import CounterLayout from "@/components/counter-layout";
 
 export default function CounterIncidentView({
@@ -10,8 +9,8 @@ export default function CounterIncidentView({
     <CounterLayout
       top={
         <>
-          <h1 className="font-display font-black text-[clamp(1.75rem,5vw,3rem)] leading-tight text-ink mb-3">
-            {BRIDGE.name}
+          <h1 className="font-display font-black text-[clamp(2.5rem,8vw,4.5rem)] leading-tight text-ink mb-3">
+            Thorpe Watch
           </h1>
           <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-alert">
             <span aria-hidden className="relative flex h-2.5 w-2.5">
