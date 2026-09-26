@@ -13,7 +13,7 @@ export default function TimelinePage() {
   const grouped = groupByYear(INCIDENTS);
 
   return (
-    <main className="min-h-[calc(100vh-3.5rem)] px-4 py-12">
+    <main className="min-h-[calc(100vh-3.5rem)] px-4 pt-16 pb-20 sm:px-6 sm:py-12">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <div className="text-5xl mb-3">🏆</div>
