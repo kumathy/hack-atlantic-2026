@@ -3,3 +3,5 @@ __pycache__/
 .env
 images.db
 profiles.db
+images.db
+vibration.db
