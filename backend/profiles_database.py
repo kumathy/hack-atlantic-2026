@@ -49,11 +49,6 @@ def get_profile_by_email(email):
         return dict(row) if row else None
 
 def subscribe_email(email):
-    """
-    Add the email if it doesn't exist.
-    If it already exists, set send_sub = 1.
-    """
-
     with get_connection() as connection:
         existing = connection.execute(
             """
@@ -92,8 +87,7 @@ def unsubscribe_email(email):
     with get_connection() as connection:
         connection.execute(
             """
-            UPDATE profiles
-            SET send_sub = 0
+            DELETE FROM profiles
             WHERE email = ?
             """,
             (email,),
@@ -109,5 +103,4 @@ def get_subscribed_profiles():
             ORDER BY date DESC
             """
         ).fetchall()
-
         return [dict(row) for row in rows]
