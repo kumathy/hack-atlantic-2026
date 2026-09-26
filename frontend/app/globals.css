@@ -3,8 +3,9 @@
 /* Fonts are loaded by next/font in app/layout.tsx and exposed as CSS vars.
    Registering them here gives you `font-display` and `font-body` utilities. */
 @theme {
-  --font-display: var(--font-fraunces), serif;
-  --font-body: var(--font-nunito), sans-serif;
+  --font-display: var(--font-inter), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-counter: var(--font-fraunces), serif;
 }
 
 * {
@@ -14,7 +15,7 @@
 html {
   background-color: #fef3e8;
   color: #3d2314;
-  font-family: var(--font-nunito), sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 
 ::-webkit-scrollbar {

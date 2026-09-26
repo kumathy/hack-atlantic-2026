@@ -16,7 +16,7 @@ export default function HomePage() {
   const [isReportOpen, setIsReportOpen] = useState(false);
 
   return (
-    <main className="relative min-h-[calc(100vh-3.5rem)] overflow-hidden">
+    <main className="relative flex flex-col items-center justify-center min-h-[calc(100vh-3.5rem)] px-4 py-12 overflow-hidden">
       {days === null ? (
         <CounterPlaceholder />
       ) : days === 0 ? (
@@ -27,7 +27,7 @@ export default function HomePage() {
       ) : (
         <NormalDayView days={days} />
       )}
-      <div className="flex flex-row flex-wrap items-center justify-center gap-3 pb-8">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-3">
         <Link
           href="/timeline"
           className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-[#f5d4b0] text-[#c94a1a] font-bold rounded-full hover:border-[#ff6b35] transition-colors"

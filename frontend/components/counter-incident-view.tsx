@@ -2,7 +2,7 @@ import { BRIDGE } from "@/lib/incidents";
 
 export default function CounterIncidentView() {
   return (
-    <div className="relative z-10 py-12 px-4 max-w-4xl mx-auto text-center">
+    <div className="relative z-10 max-w-4xl mx-auto text-center">
         <div className="bounce-in">
           <h1 className="font-display font-black text-[clamp(3.5rem,14vw,9rem)] leading-none text-[#c94a1a] mb-2">
             Live Incident!
