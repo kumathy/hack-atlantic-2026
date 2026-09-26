@@ -26,8 +26,7 @@ export default function ReportModal({
   const fileRef = useRef<HTMLInputElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  // Reads the latest state without re-running the effect below, so the dialog
-  // isn't re-focused (stealing focus from the inputs) on every re-render.
+  // Ref so the focus effect doesn't re-run on every render
   const handleEscape = useEffectEvent(() => {
     if (formState === "submitting") return;
     if (formState === "success") resetForm();
@@ -51,14 +50,12 @@ export default function ReportModal({
     };
   }, [isOpen]);
 
-  // Move focus into the dialog when it opens and when it swaps to the success view.
   const isSuccess = formState === "success";
   useEffect(() => {
     if (isOpen) dialogRef.current?.focus();
   }, [isOpen, isSuccess]);
 
-  // Blob URLs from the file picker leak until they're revoked. Revoke only the
-  // ones being dropped, plus whatever is left when the modal unmounts.
+  // Revoke blob URLs so they don't leak
   const previewsRef = useRef(previews);
   previewsRef.current = previews;
   useEffect(() => {
@@ -110,7 +107,7 @@ export default function ReportModal({
   if (formState === "success") {
     return (
       <div
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#3d2314]/45 p-4 backdrop-blur-sm fade-in"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/45 p-4 backdrop-blur-sm fade-in"
         onMouseDown={closeAfterSuccess}
       >
         <div
@@ -120,40 +117,40 @@ export default function ReportModal({
           aria-labelledby="report-success-title"
           tabIndex={-1}
           onMouseDown={(e) => e.stopPropagation()}
-          className="relative w-full max-w-md rounded-3xl border-2 border-[#f5d4b0] bg-[#fef3e8] p-8 text-center shadow-2xl outline-none modal-in"
+          className="relative w-full max-w-md rounded-3xl border-2 border-line bg-surface p-8 text-center shadow-2xl outline-none modal-in"
         >
           <button
             type="button"
             onClick={closeAfterSuccess}
             aria-label="Close report dialog"
-            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-[#a0673a] transition-colors hover:text-[#c94a1a]"
+            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-muted transition-colors hover:text-brand"
           >
             <TbX aria-hidden />
           </button>
           <TbCircleCheck
             aria-hidden
-            className="block text-6xl mb-4 mx-auto text-[#c94a1a]"
+            className="block text-6xl mb-4 mx-auto text-brand"
           />
           <h2
             id="report-success-title"
-            className="font-display font-black text-3xl text-[#c94a1a] mb-3"
+            className="font-display font-black text-3xl text-brand mb-3"
           >
             Report received!
           </h2>
-          <p className="text-[#a0673a] text-sm leading-relaxed">
+          <p className="text-muted text-sm leading-relaxed">
             Thanks for your report. We&rsquo;ll review it and update the
             timeline.
           </p>
           <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
             <button
               onClick={resetForm}
-              className="px-6 py-2.5 bg-[#ff6b35] text-white font-bold rounded-full hover:bg-[#e85a24] transition-colors text-sm"
+              className="px-6 py-2.5 bg-accent text-white font-bold rounded-full hover:bg-accent-hover transition-colors text-sm"
             >
               Submit another report
             </button>
             <button
               onClick={closeAfterSuccess}
-              className="px-6 py-2.5 bg-white border-2 border-[#f5d4b0] text-[#c94a1a] font-bold rounded-full hover:border-[#ff6b35] transition-colors text-sm"
+              className="px-6 py-2.5 bg-white border-2 border-line text-brand font-bold rounded-full hover:border-accent transition-colors text-sm"
             >
               Back to counter
             </button>
@@ -165,7 +162,7 @@ export default function ReportModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#3d2314]/45 p-4 backdrop-blur-sm fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/45 p-4 backdrop-blur-sm fade-in"
       onMouseDown={formState === "submitting" ? undefined : onClose}
     >
       <div
@@ -175,14 +172,14 @@ export default function ReportModal({
         aria-labelledby="report-dialog-title"
         tabIndex={-1}
         onMouseDown={(e) => e.stopPropagation()}
-        className="relative max-h-[calc(100vh-2rem)] w-full max-w-xl overflow-y-auto rounded-3xl border-2 border-[#f5d4b0] bg-[#fef3e8] p-6 shadow-2xl outline-none sm:p-8 modal-in"
+        className="relative max-h-[calc(100vh-2rem)] w-full max-w-xl overflow-y-auto rounded-3xl border-2 border-line bg-surface p-6 shadow-2xl outline-none sm:p-8 modal-in"
       >
         <button
           type="button"
           onClick={onClose}
           disabled={formState === "submitting"}
           aria-label="Close report dialog"
-          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-[#a0673a] transition-colors hover:text-[#c94a1a] disabled:cursor-not-allowed disabled:opacity-50"
+          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-muted transition-colors hover:text-brand disabled:cursor-not-allowed disabled:opacity-50"
         >
           <TbX aria-hidden />
         </button>
@@ -190,15 +187,15 @@ export default function ReportModal({
         <div className="text-center mb-8 px-8">
           <TbClipboardText
             aria-hidden
-            className="block text-5xl mb-3 mx-auto text-[#c94a1a]"
+            className="block text-5xl mb-3 mx-auto text-brand"
           />
           <h2
             id="report-dialog-title"
-            className="font-display font-black text-4xl text-[#c94a1a] mb-2"
+            className="font-display font-black text-4xl text-brand mb-2"
           >
             Report an Incident
           </h2>
-          <p className="text-[#a0673a] text-sm leading-relaxed max-w-xs mx-auto">
+          <p className="text-muted text-sm leading-relaxed max-w-xs mx-auto">
             Saw a truck hit the overpass? Send us the details and any
             photos you took.
           </p>
@@ -208,9 +205,9 @@ export default function ReportModal({
           <div>
             <label
               htmlFor="report-name"
-              className="block text-xs font-bold uppercase tracking-widest text-[#a0673a] mb-1.5"
+              className="block text-xs font-bold uppercase tracking-widest text-muted mb-1.5"
             >
-              Your Name <span className="text-[#ff6b35]">*</span>
+              Your Name <span className="text-accent">*</span>
             </label>
             <input
               required
@@ -220,16 +217,16 @@ export default function ReportModal({
               value={form.name}
               onChange={handleChange}
               placeholder="Jane Smith"
-              className="w-full bg-white border-2 border-[#f5d4b0] rounded-xl px-4 py-3 text-sm text-[#3d2314] placeholder-[#d4b090] focus:outline-none focus:border-[#ff6b35] transition-colors"
+              className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors"
             />
           </div>
 
           <div>
             <label
               htmlFor="report-email"
-              className="block text-xs font-bold uppercase tracking-widest text-[#a0673a] mb-1.5"
+              className="block text-xs font-bold uppercase tracking-widest text-muted mb-1.5"
             >
-              Email Address <span className="text-[#ff6b35]">*</span>
+              Email Address <span className="text-accent">*</span>
             </label>
             <input
               required
@@ -239,14 +236,14 @@ export default function ReportModal({
               value={form.email}
               onChange={handleChange}
               placeholder="you@example.com"
-              className="w-full bg-white border-2 border-[#f5d4b0] rounded-xl px-4 py-3 text-sm text-[#3d2314] placeholder-[#d4b090] focus:outline-none focus:border-[#ff6b35] transition-colors"
+              className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors"
             />
           </div>
 
           <div>
-            <span className="block text-xs font-bold uppercase tracking-widest text-[#a0673a] mb-1.5">
+            <span className="block text-xs font-bold uppercase tracking-widest text-muted mb-1.5">
               Photos{" "}
-              <span className="text-[#c4916a] font-normal normal-case tracking-normal">
+              <span className="text-subtle font-normal normal-case tracking-normal">
                 (optional, up to 5)
               </span>
             </span>
@@ -266,8 +263,8 @@ export default function ReportModal({
                 rounded-xl border-2 border-dashed p-8 text-center cursor-pointer transition-all
                 ${
                   isDragging
-                    ? "border-[#ff6b35] bg-[#fff0e8]"
-                    : "border-[#f5d4b0] hover:border-[#ff6b35] hover:bg-[#fff8f3]"
+                    ? "border-accent bg-tint"
+                    : "border-line hover:border-accent hover:bg-tint"
                 }
               `}
             >
@@ -281,9 +278,9 @@ export default function ReportModal({
               />
               <TbCameraPlus
                 aria-hidden
-                className="block text-2xl mb-1 mx-auto text-[#c4916a]"
+                className="block text-2xl mb-1 mx-auto text-subtle"
               />
-              <p className="text-xs text-[#c4916a]">
+              <p className="text-xs text-subtle">
                 Drop photos here or click to upload
               </p>
             </div>
@@ -293,9 +290,8 @@ export default function ReportModal({
                 {previews.map((src, i) => (
                   <div
                     key={src}
-                    className="relative w-20 h-20 rounded-lg overflow-hidden bg-[#f5d4b0]"
+                    className="relative w-20 h-20 rounded-lg overflow-hidden bg-line"
                   >
-                    {/* Blob URL from the file picker — next/image can't optimize these. */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={src}
@@ -306,7 +302,7 @@ export default function ReportModal({
                       type="button"
                       onClick={() => removePreview(i)}
                       aria-label={`Remove photo ${i + 1}`}
-                      className="absolute top-1 right-1 bg-white/90 rounded-full w-5 h-5 text-xs flex items-center justify-center text-[#c94a1a] font-bold hover:bg-white transition-colors leading-none"
+                      className="absolute top-1 right-1 bg-white/90 rounded-full w-5 h-5 text-xs flex items-center justify-center text-brand font-bold hover:bg-white transition-colors leading-none"
                     >
                       <TbX aria-hidden />
                     </button>
@@ -319,9 +315,9 @@ export default function ReportModal({
           <div>
             <label
               htmlFor="report-description"
-              className="block text-xs font-bold uppercase tracking-widest text-[#a0673a] mb-1.5"
+              className="block text-xs font-bold uppercase tracking-widest text-muted mb-1.5"
             >
-              What happened? <span className="text-[#ff6b35]">*</span>
+              What happened? <span className="text-accent">*</span>
             </label>
             <textarea
               required
@@ -331,14 +327,14 @@ export default function ReportModal({
               onChange={handleChange}
               rows={5}
               placeholder="When did it happen? What kind of truck was it? Was the road closed?"
-              className="w-full bg-white border-2 border-[#f5d4b0] rounded-xl px-4 py-3 text-sm text-[#3d2314] placeholder-[#d4b090] focus:outline-none focus:border-[#ff6b35] transition-colors resize-none"
+              className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors resize-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={formState === "submitting"}
-            className="w-full inline-flex items-center justify-center gap-2 py-4 bg-[#ff6b35] text-white font-black rounded-full text-sm uppercase tracking-widest hover:bg-[#e85a24] transition-colors disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
+            className="w-full inline-flex items-center justify-center gap-2 py-4 bg-accent text-white font-black rounded-full text-sm uppercase tracking-widest hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
           >
             {formState === "submitting" ? (
               <>

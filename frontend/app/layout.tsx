@@ -10,7 +10,6 @@ const inter = Inter({
   display: "swap",
 });
 
-/* Only used for the big day counter. */
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: "900",
@@ -31,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
-      <body className="min-h-screen bg-[#fef3e8] text-[#3d2314] font-body">
+      <body className="min-h-screen bg-surface text-ink font-body">
         <Nav />
         {children}
       </body>

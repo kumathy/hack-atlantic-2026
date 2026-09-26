@@ -12,19 +12,12 @@ import NormalDayView from "@/components/counter-normal-day";
 import { LAST_INCIDENT_DATE } from "@/lib/incidents";
 import { useDaysSince } from "@/lib/use-days-since";
 
-/* The first screen: fills the viewport below the nav, content centered. */
-const HERO_CLASS =
-  "relative flex flex-col items-center justify-center min-h-[calc(100vh-3.5rem)] px-4 pt-12 pb-24";
-
-/* Reading the URL (?view=) needs a Suspense boundary for static prerendering. */
 export default function HomePage() {
   return (
     <Suspense
       fallback={
         <main>
-          <section className={HERO_CLASS}>
-            <CounterPlaceholder />
-          </section>
+          <CounterPlaceholder />
         </main>
       }
     >
@@ -33,10 +26,7 @@ export default function HomePage() {
   );
 }
 
-/**
- * Dev-only: `?view=incident` forces the live-incident view so it can be
- * worked on without editing LAST_INCIDENT_DATE. Ignored in production.
- */
+// Dev only: ?view=incident forces the incident view.
 function usePreviewDays(days: number | null): number | null {
   const view = useSearchParams().get("view");
   if (process.env.NODE_ENV !== "development" || days === null) return days;
@@ -49,39 +39,42 @@ function Home() {
   const [isAlertsOpen, setIsAlertsOpen] = useState(false);
   const isIncident = days === 0;
 
+  const actions = (
+    <div className="flex flex-row flex-wrap items-center justify-center gap-3">
+      <button
+        onClick={() => setIsAlertsOpen(true)}
+        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-line text-brand font-bold rounded-full hover:border-accent transition-colors"
+      >
+        <TbBell aria-hidden />
+        Get Alerts
+      </button>
+      {days !== null && days > 0 && (
+        <button
+          onClick={() => setIsReportOpen(true)}
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-bold rounded-full hover:bg-accent-hover transition-colors shadow-sm"
+        >
+          <TbAlertTriangle aria-hidden />
+          Report an Incident
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <main>
-      <section className={HERO_CLASS}>
+      <section className="relative">
         {days === null ? (
           <CounterPlaceholder />
         ) : isIncident ? (
-          <CounterIncidentView />
+          <CounterIncidentView>{actions}</CounterIncidentView>
         ) : (
-          <NormalDayView days={days} />
+          <NormalDayView days={days}>{actions}</NormalDayView>
         )}
-        <div className="flex flex-row flex-wrap items-center justify-center gap-3">
-          <button
-            onClick={() => setIsAlertsOpen(true)}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-[#f5d4b0] text-[#c94a1a] font-bold rounded-full hover:border-[#ff6b35] transition-colors"
-          >
-            <TbBell aria-hidden />
-            Get Alerts
-          </button>
-          {days !== null && days > 0 && (
-            <button
-              onClick={() => setIsReportOpen(true)}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#ff6b35] text-white font-bold rounded-full hover:bg-[#e85a24] transition-colors shadow-sm"
-            >
-              <TbAlertTriangle aria-hidden />
-              Report an Incident
-            </button>
-          )}
-        </div>
 
         {isIncident && (
           <a
             href="#detours"
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-xs font-semibold uppercase tracking-widest text-[#8a5530] hover:text-[#c94a1a] transition-colors"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-xs font-semibold uppercase tracking-widest text-muted hover:text-brand transition-colors"
           >
             Road closure map
             <TbChevronDown

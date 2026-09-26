@@ -1,35 +1,44 @@
 import { BRIDGE, LAST_INCIDENT_DATE } from "@/lib/incidents";
 import { formatLongDate } from "@/lib/dates";
+import CounterLayout from "@/components/counter-layout";
 
-export default function NormalDayView({ days }: { days: number }) {
-
+export default function NormalDayView({
+  days,
+  children,
+}: {
+  days: number;
+  children?: React.ReactNode;
+}) {
   return (
-    <div className="relative z-10 flex flex-col items-center text-center">
-      <div className="text-6xl mb-4 wiggle inline-block">🌉</div>
-
-      <h1 className="font-display font-black text-[clamp(1.75rem,5vw,3rem)] leading-tight text-[#3d2314] mb-4">
-        {BRIDGE.name}
-      </h1>
-
-      <div
-        className="font-counter font-black leading-none tabular-nums text-[#c94a1a]"
-        style={{ fontSize: "clamp(6rem,22vw,15rem)" }}
-      >
-        {days.toLocaleString()}
-      </div>
-
-      <p className="font-display italic text-[clamp(1rem,2.5vw,1.5rem)] text-[#a0673a] mt-2 mb-1">
-        {days === 1 ? "day" : "days"} since a truck hit the
-        overpass on Waterloo Row
-      </p>
-
-      <p className="text-[#c4916a] text-sm mt-2 mb-10">
-        Last incident:{" "}
-        <span className="font-semibold text-[#a0673a]">
-          {formatLongDate(LAST_INCIDENT_DATE)}
-        </span>
-      </p>
-
-    </div>
+    <CounterLayout
+      top={
+        <h1 className="font-display font-black text-[clamp(1.75rem,5vw,3rem)] leading-tight text-ink">
+          {BRIDGE.name}
+        </h1>
+      }
+      middle={
+        <div
+          className="font-counter font-black leading-none tabular-nums text-counter"
+          style={{ fontSize: "clamp(6rem,22vw,15rem)" }}
+        >
+          {days.toLocaleString()}
+        </div>
+      }
+      bottom={
+        <>
+          <p className="font-display italic text-[clamp(1rem,2.5vw,1.5rem)] text-muted mb-1">
+            {days === 1 ? "day" : "days"} since a truck hit the overpass on
+            Waterloo Row
+          </p>
+          <p className="text-subtle text-sm mt-2 mb-8">
+            Last incident:{" "}
+            <span className="font-semibold text-muted">
+              {formatLongDate(LAST_INCIDENT_DATE)}
+            </span>
+          </p>
+          {children}
+        </>
+      }
+    />
   );
 }

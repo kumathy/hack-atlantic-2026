@@ -3,7 +3,6 @@
 import { useEffect, useEffectEvent, useRef } from "react";
 import { TbX } from "react-icons/tb";
 
-/* Overlay, Escape-to-close, scroll lock and focus handling for popups. */
 export default function Modal({
   isOpen,
   onClose,
@@ -41,7 +40,7 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#3d2314]/45 p-4 backdrop-blur-sm fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/45 p-4 backdrop-blur-sm fade-in"
       onMouseDown={onClose}
     >
       <div
@@ -51,13 +50,13 @@ export default function Modal({
         aria-labelledby={labelledBy}
         tabIndex={-1}
         onMouseDown={(e) => e.stopPropagation()}
-        className="relative w-full max-w-md rounded-3xl border-2 border-[#f5d4b0] bg-[#fef3e8] p-8 text-center shadow-2xl outline-none modal-in"
+        className="relative w-full max-w-md rounded-3xl border-2 border-line bg-surface p-8 text-center shadow-2xl outline-none modal-in"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close dialog"
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-[#a0673a] transition-colors hover:text-[#c94a1a]"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-muted transition-colors hover:text-brand"
         >
           <TbX aria-hidden />
         </button>

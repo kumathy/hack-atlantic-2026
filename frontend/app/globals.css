@@ -1,21 +1,32 @@
 @import "tailwindcss";
 
-/* Fonts are loaded by next/font in app/layout.tsx and exposed as CSS vars.
-   Registering them here gives you `font-display` and `font-body` utilities. */
 @theme {
   --font-display: var(--font-inter), sans-serif;
   --font-body: var(--font-inter), sans-serif;
   --font-counter: var(--font-fraunces), serif;
-}
 
-* {
-  box-sizing: border-box;
+  /* GNB Design System palette */
+  --color-surface: #f3f3f3;
+  --color-tint: #eeeeee;
+  --color-line: #dddddd;
+  --color-line-strong: #aaaaaa;
+  --color-hint: #777777;
+  --color-subtle: #666666;
+  --color-muted: #555555;
+  --color-ink: #333333;
+
+  --color-brand: #006055;
+  --color-counter: #00524a;
+  --color-accent: #006055;
+  --color-accent-hover: #00463e;
+
+  --color-nav: #79242f;
+  --color-nav-hover: #5e1c25;
+  --color-alert: #79242f;
 }
 
 html {
-  background-color: #fef3e8;
-  color: #3d2314;
-  font-family: var(--font-inter), sans-serif;
+  background-color: var(--color-surface);
 }
 
 ::-webkit-scrollbar {
@@ -25,42 +36,29 @@ html {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e8c9a8;
+  background: var(--color-line-strong);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6b35;
+  background: var(--color-accent);
 }
 
-@keyframes fall {
-  0% {
-    transform: translateY(-100px) rotate(-15deg);
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateY(105vh) rotate(20deg);
+@keyframes fade-in {
+  from {
     opacity: 0;
   }
 }
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(0.7);
+@keyframes modal-in {
+  from {
     opacity: 0;
+    transform: scale(0.97);
   }
-  60% {
-    transform: scale(1.08);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+}
+.fade-in {
+  animation: fade-in 150ms ease-out both;
+}
+.modal-in {
+  animation: modal-in 150ms ease-out both;
 }
 
 @keyframes wiggle {
@@ -75,47 +73,11 @@ html {
     transform: rotate(6deg);
   }
 }
-
-.truck-rain span {
-  position: fixed;
-  animation: fall linear infinite;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
-.bounce-in {
-  animation: bounce-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
 .wiggle:hover {
   animation: wiggle 0.4s ease-in-out;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes modal-in {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-}
-
-.fade-in {
-  animation: fade-in 150ms ease-out both;
-}
-
-.modal-in {
-  animation: modal-in 150ms ease-out both;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .truck-rain span,
-  .bounce-in,
   .fade-in,
   .modal-in,
   .wiggle:hover {

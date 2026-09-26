@@ -1,18 +1,9 @@
-/*
- * Road geometry around the Waterloo Row underpass, taken from OpenStreetMap.
- * The Lincoln Trail bridge (old rail line onto the walking bridge) crosses
- * over where Queen Street becomes Waterloo Row; OSM tags it maxheight 3.5.
- */
+// Coordinates from OpenStreetMap
 
 export type LatLng = [number, number];
 
-/** Where trucks get stuck. */
 export const UNDERPASS: LatLng = [45.95635, -66.6333];
 
-/**
- * Roads blocked while a truck is stuck: every segment OSM tags maxheight 3.5
- * (they pass under the bridge), the junction lanes, and the approaches into it.
- */
 export const CLOSED_ROADS: LatLng[][] = [
   // Queen Street through the underpass
   [[45.9566201, -66.6334153], [45.9564981, -66.6333433], [45.9563745, -66.633289]],
@@ -34,7 +25,6 @@ export const CLOSED_ROADS: LatLng[][] = [
   [[45.9561673, -66.6332028], [45.9561375, -66.6331881], [45.9557835, -66.6330504], [45.9551611, -66.6328083]],
 ];
 
-/** Street names for the closure list; matches the lines drawn on the map. */
 export const CLOSED_STREETS = [
   "Queen Street",
   "Brunswick Street",

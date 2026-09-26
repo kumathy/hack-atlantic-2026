@@ -5,13 +5,12 @@ export interface Incident {
   source: { name: string; url: string };
 }
 
-/** Every incident is at this bridge, so it's stated once rather than per entry. */
 export const BRIDGE = {
   name: "Bill Thorpe Walking Bridge",
   location: "Waterloo Row underpass, Fredericton NB",
 };
 
-/** Newest first. Only strikes we could date from a published source. */
+// Newest first
 export const INCIDENTS: Incident[] = [
   {
     date: "2025-10-17",
@@ -42,16 +41,11 @@ export const INCIDENTS: Incident[] = [
   },
 ];
 
-/**
- * Strikes the City of Fredericton and press have counted overall. Most older
- * ones aren't individually dated online, so the timeline only shows a subset.
- */
+// Total reported by the city and press; most older strikes aren't dated online
 export const RECORDED_STRIKES = { total: 15, sinceYear: 2007 };
 
-/** To preview the 0-day "OH NO" view, temporarily replace with today's date. */
 export const LAST_INCIDENT_DATE = INCIDENTS[0].date;
 
-/** Photos shown when days = 0. */
 export const ZERO_DAY_PHOTOS = [
   {
     src: "https://images.unsplash.com/photo-1506306460327-3164753b74c7?w=500&h=400&fit=crop&auto=format",

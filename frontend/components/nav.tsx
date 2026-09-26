@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FaBridgeCircleExclamation } from "react-icons/fa6";
 import { TbGauge, TbTimeline } from "react-icons/tb";
 
 const LINKS = [
@@ -13,11 +14,14 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#fef3e8]/90 backdrop-blur-sm border-b-2 border-[#f5d4b0]">
+    <nav className="sticky top-0 z-50 bg-surface border-b-2 border-line">
       <div className="max-w-5xl mx-auto px-4 sm:px-8 flex items-center justify-between h-14">
         <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-2xl wiggle inline-block">🌉</span>
-          <span className="font-display font-black text-base text-[#c94a1a] tracking-tight group-hover:text-[#ff6b35] transition-colors">
+          <FaBridgeCircleExclamation
+            aria-hidden
+            className="text-2xl text-nav wiggle inline-block"
+          />
+          <span className="font-display font-black text-base text-nav tracking-tight group-hover:text-nav-hover transition-colors">
             Thorpe Watch
           </span>
         </Link>
@@ -34,8 +38,8 @@ export default function Nav() {
                   inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all
                   ${
                     isActive
-                      ? "bg-[#ff6b35] text-white shadow-sm"
-                      : "text-[#a0673a] hover:bg-[#fde0c8] hover:text-[#c94a1a]"
+                      ? "bg-nav text-white shadow-sm"
+                      : "text-muted hover:bg-tint hover:text-nav"
                   }
                 `}
               >

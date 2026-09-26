@@ -16,7 +16,6 @@ export default function SubscribeModal({
 }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} labelledBy="alerts-heading">
-      {/* Unmounts on close, so the form starts fresh each time it opens. */}
       <SubscribeForm onClose={onClose} />
     </Modal>
   );
@@ -41,15 +40,15 @@ function SubscribeForm({ onClose }: { onClose: () => void }) {
       <>
         <TbCircleCheck
           aria-hidden
-          className="block text-6xl mb-4 mx-auto text-[#c94a1a]"
+          className="block text-6xl mb-4 mx-auto text-brand"
         />
         <h2
           id="alerts-heading"
-          className="font-display font-black text-3xl text-[#c94a1a] mb-3"
+          className="font-display font-black text-3xl text-brand mb-3"
         >
           {status === "subscribed" ? "You're subscribed" : "Already subscribed"}
         </h2>
-        <p className="text-sm text-[#8a5530] mb-6">
+        <p className="text-sm text-muted mb-6">
           {status === "subscribed"
             ? "We'll email you the next time a truck hits the bridge."
             : "This email is already on the list. You're all set."}
@@ -57,7 +56,7 @@ function SubscribeForm({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={onClose}
-          className="px-6 py-2.5 bg-[#ff6b35] text-white font-bold rounded-full hover:bg-[#e85a24] transition-colors text-sm"
+          className="px-6 py-2.5 bg-accent text-white font-bold rounded-full hover:bg-accent-hover transition-colors text-sm"
         >
           Done
         </button>
@@ -69,15 +68,15 @@ function SubscribeForm({ onClose }: { onClose: () => void }) {
     <>
       <TbBellRinging
         aria-hidden
-        className="block text-5xl mb-3 mx-auto text-[#c94a1a]"
+        className="block text-5xl mb-3 mx-auto text-brand"
       />
       <h2
         id="alerts-heading"
-        className="font-display font-black text-3xl text-[#c94a1a] mb-2"
+        className="font-display font-black text-3xl text-brand mb-2"
       >
         Get Incident Alerts
       </h2>
-      <p className="text-sm text-[#8a5530] mb-6">
+      <p className="text-sm text-muted mb-6">
         We&rsquo;ll email you when a truck hits the bridge.
       </p>
 
@@ -93,12 +92,12 @@ function SubscribeForm({ onClose }: { onClose: () => void }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className="w-full bg-white border-2 border-[#f5d4b0] rounded-xl px-4 py-3 text-sm text-[#3d2314] placeholder-[#b8906a] focus:outline-none focus:border-[#ff6b35] transition-colors"
+          className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors"
         />
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="w-full inline-flex items-center justify-center gap-2 py-3 bg-[#ff6b35] text-white font-bold rounded-full hover:bg-[#e85a24] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full inline-flex items-center justify-center gap-2 py-3 bg-accent text-white font-bold rounded-full hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {status === "submitting" ? (
             <TbLoader2 aria-hidden className="animate-spin" />
@@ -110,12 +109,12 @@ function SubscribeForm({ onClose }: { onClose: () => void }) {
       </form>
 
       {status === "error" && (
-        <p role="alert" className="mt-3 text-sm text-[#c94a1a]">
+        <p role="alert" className="mt-3 text-sm text-brand">
           Something went wrong. Please try again.
         </p>
       )}
 
-      <p className="mt-4 text-xs text-[#8a5530]">
+      <p className="mt-4 text-xs text-muted">
         Only used for incident alerts. Unsubscribe anytime.
       </p>
     </>

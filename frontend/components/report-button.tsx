@@ -3,7 +3,6 @@
 import { useState } from "react";
 import ReportModal from "@/components/report-modal";
 
-/* Lets server-rendered pages open the report modal. */
 export default function ReportButton({
   children,
   className,

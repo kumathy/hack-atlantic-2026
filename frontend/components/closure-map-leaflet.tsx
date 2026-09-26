@@ -5,9 +5,9 @@ import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip } from "react-
 import { CLOSED_ROADS, UNDERPASS } from "@/lib/closure";
 import { BRIDGE } from "@/lib/incidents";
 
-const CLOSED_COLOR = "#c94a1a";
+// Keep in sync with --color-alert
+const CLOSED_COLOR = "#79242f";
 
-/* Browser-only: Leaflet touches `window`, so this is loaded via next/dynamic. */
 export default function ClosureMapLeaflet() {
   return (
     <MapContainer
