@@ -7,8 +7,8 @@ import ReportModal from "@/components/report-modal";
 import TruckRain from "@/components/truck-rain";
 import { formatLongDate } from "@/lib/dates";
 import {
-  INCIDENTS,
   LAST_INCIDENT_DATE,
+  RECORDED_STRIKES,
   ZERO_DAY_PHOTOS,
 } from "@/lib/incidents";
 import { useDaysSince } from "@/lib/use-days-since";
@@ -110,10 +110,6 @@ function NormalDayView({
   days: number;
   onOpenReport: () => void;
 }) {
-  const firstYear = new Date(
-    INCIDENTS[INCIDENTS.length - 1].date + "T00:00:00",
-  ).getFullYear();
-
   return (
     <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-3.5rem)] px-4 text-center">
       <div className="text-6xl mb-4 wiggle inline-block">🌉</div>
@@ -143,10 +139,10 @@ function NormalDayView({
 
       <div className="flex flex-wrap gap-2 justify-center mb-10">
         <span className="bg-white border border-[#f5d4b0] text-[#a0673a] text-xs font-semibold px-3 py-1.5 rounded-full">
-          🚛 {INCIDENTS.length} total incidents
+          🚛 {RECORDED_STRIKES.total} total incidents
         </span>
         <span className="bg-white border border-[#f5d4b0] text-[#a0673a] text-xs font-semibold px-3 py-1.5 rounded-full">
-          📅 Since {firstYear}
+          📅 Since {RECORDED_STRIKES.sinceYear}
         </span>
         <span className="bg-white border border-[#f5d4b0] text-[#a0673a] text-xs font-semibold px-3 py-1.5 rounded-full">
           🌉 Bridge still standing

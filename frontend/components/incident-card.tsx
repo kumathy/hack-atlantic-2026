@@ -21,7 +21,7 @@ export default function IncidentCard({ incident }: { incident: Incident }) {
           <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-[#f5d4b0]">
             <Image
               src={incident.photo}
-              alt={`${incident.bridge} incident`}
+              alt={incident.damage}
               fill
               sizes="64px"
               className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -29,20 +29,20 @@ export default function IncidentCard({ incident }: { incident: Incident }) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <div className="flex flex-wrap items-start gap-1.5 mb-1">
-              <span className="font-display font-bold text-sm text-[#3d2314]">
-                {incident.bridge}
-              </span>
-              <span className="text-xs bg-[#fff0e8] text-[#c94a1a] border border-[#fde0c8] px-2 py-0.5 rounded-full font-semibold">
-                {incident.damage}
-              </span>
-            </div>
-            <div className="text-xs text-[#c4916a] mb-1.5">
-              {incident.location}
-            </div>
-            <p className="text-xs text-[#a0673a] italic leading-relaxed">
-              &ldquo;{incident.note}&rdquo;
+            <h3 className="font-display font-bold text-sm text-[#3d2314] mb-1">
+              {incident.damage}
+            </h3>
+            <p className="text-xs text-[#a0673a] leading-relaxed">
+              {incident.note}
             </p>
+            <a
+              href={incident.source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-1.5 text-xs font-semibold text-[#ff6b35] hover:text-[#c94a1a] hover:underline"
+            >
+              Source: {incident.source.name} ↗
+            </a>
           </div>
         </div>
       </div>
