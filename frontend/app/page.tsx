@@ -8,8 +8,9 @@ import CounterIncidentView from "@/components/counter-incident-view";
 import NormalDayView from "@/components/counter-normal-day";
 import { formatLongDate } from "@/lib/dates";
 import {
-  INCIDENTS,
-  LAST_INCIDENT_DATE
+  LAST_INCIDENT_DATE,
+  RECORDED_STRIKES,
+  ZERO_DAY_PHOTOS,
 } from "@/lib/incidents";
 import { useDaysSince } from "@/lib/use-days-since";
 

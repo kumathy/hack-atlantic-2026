@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import IncidentCard from "@/components/incident-card";
+import ReportButton from "@/components/report-button";
 import { groupByYear } from "@/lib/dates";
-import { INCIDENTS } from "@/lib/incidents";
+import { BRIDGE, INCIDENTS, RECORDED_STRIKES } from "@/lib/incidents";
+
+const SUMMARY = `${RECORDED_STRIKES.total} strikes recorded since ${RECORDED_STRIKES.sinceYear}.`;
 
 export const metadata: Metadata = {
   title: "Hall of Shame — Overpass Watch",
-  description: `${INCIDENTS.length} documented incidents. The bridge is undefeated.`,
+  description: SUMMARY,
 };
 
 /* No clock, no state, no browser APIs — this one stays a server component. */
@@ -20,8 +23,11 @@ export default function TimelinePage() {
           <h1 className="font-display font-black text-4xl text-[#c94a1a] mb-2">
             Hall of Shame
           </h1>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#c4916a] mb-2">
+            {BRIDGE.name} · {BRIDGE.location}
+          </p>
           <p className="text-[#a0673a] text-sm">
-            {INCIDENTS.length} documented incidents. The bridge is undefeated.
+            {SUMMARY}
           </p>
         </div>
 
@@ -47,7 +53,7 @@ export default function TimelinePage() {
               <div className="space-y-3">
                 {incidents.map((inc) => (
                   <IncidentCard
-                    key={`${inc.date}-${inc.bridge}`}
+                    key={inc.date}
                     incident={inc}
                   />
                 ))}
@@ -59,9 +65,13 @@ export default function TimelinePage() {
           <div className="relative flex items-center">
             <div className="w-[4.5rem] sm:w-[6rem]" />
             <div className="absolute left-[4.5rem] sm:left-[6rem] w-3 h-3 bg-[#f5d4b0] rounded-full -translate-x-1/2" />
-            <p className="ml-6 text-xs text-[#c4916a] italic">
-              The story continues...
-            </p>
+            <div className="ml-6 text-xs text-[#c4916a] italic">
+              Plus ~{RECORDED_STRIKES.total - INCIDENTS.length} earlier strikes
+              since {RECORDED_STRIKES.sinceYear}. Remember one?{" "}
+              <ReportButton className="not-italic font-semibold text-[#ff6b35] hover:text-[#c94a1a] hover:underline">
+                Report it
+              </ReportButton>
+            </div>
           </div>
         </div>
       </div>
