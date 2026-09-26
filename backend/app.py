@@ -1,5 +1,7 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 from supabase_client import supabase
+from email_service import send_confirmation_email
 
 from data_taken import (
     init_db,
@@ -8,6 +10,7 @@ from data_taken import (
 )
 
 app = Flask(__name__)
+CORS(app)
 
 init_db()
 
@@ -87,6 +90,34 @@ def reset_bridge_status():
         "success": True,
         "data": response.data
     })
+
+@app.route("/api/subscribe", methods=["POST"])
+def subscribe():
+    data = request.get_json()
+
+    email = data.get("email", "").strip()
+
+    if not email:
+        return jsonify({
+            "success": False,
+            "message": "Email is required"
+        }), 400
+
+    try:
+        send_confirmation_email(email)
+
+        return jsonify({
+            "success": True,
+            "status": "subscribed"
+        }), 200
+
+    except Exception as e:
+        print("Email error:", e)
+
+        return jsonify({
+            "success": False,
+            "message": "Failed to send confirmation email"
+        }), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
