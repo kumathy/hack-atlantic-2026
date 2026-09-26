@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Fraunces, Nunito } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import Nav from "@/components/nav";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
   style: ["normal", "italic"],
-  variable: "--font-fraunces",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const nunito = Nunito({
+/* Only used for the big day counter. */
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-nunito",
+  weight: "900",
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-[#fef3e8] text-[#3d2314] font-body">
         <Nav />
         {children}
