@@ -1,0 +1,46 @@
+/*
+ * Road geometry around the Waterloo Row underpass, taken from OpenStreetMap.
+ * The Lincoln Trail bridge (old rail line onto the walking bridge) crosses
+ * over where Queen Street becomes Waterloo Row; OSM tags it maxheight 3.5.
+ */
+
+export type LatLng = [number, number];
+
+/** Where trucks get stuck. */
+export const UNDERPASS: LatLng = [45.95635, -66.6333];
+
+/**
+ * Roads blocked while a truck is stuck: every segment OSM tags maxheight 3.5
+ * (they pass under the bridge), the junction lanes, and the approaches into it.
+ */
+export const CLOSED_ROADS: LatLng[][] = [
+  // Queen Street through the underpass
+  [[45.9566201, -66.6334153], [45.9564981, -66.6333433], [45.9563745, -66.633289]],
+  [[45.9563745, -66.633289], [45.9561673, -66.6332028]],
+  // Brunswick Street approach (passes under the bridge)
+  [[45.9564548, -66.6337278], [45.9564206, -66.6335948], [45.9563975, -66.6335433], [45.9563691, -66.6335015], [45.9563217, -66.6334568]],
+  [[45.9563217, -66.6334568], [45.9562831, -66.6333944], [45.9562558, -66.6333401]],
+  [[45.9562558, -66.6333401], [45.9562035, -66.6332472], [45.9561673, -66.6332028]],
+  // Turning lanes inside the junction
+  [[45.9566201, -66.6334153], [45.9564619, -66.6334339], [45.9563217, -66.6334568]],
+  [[45.9563217, -66.6334568], [45.9562178, -66.6334833], [45.9561765, -66.6335069]],
+  [[45.9561765, -66.6335069], [45.9562088, -66.6334491]],
+  [[45.9562088, -66.6334491], [45.9562331, -66.6333783], [45.9562558, -66.6333401]],
+  [[45.9562088, -66.6334491], [45.956215, -66.6333901], [45.9562123, -66.6333274], [45.9562056, -66.633285], [45.9561916, -66.6332526], [45.9561673, -66.6332028]],
+  [[45.9562558, -66.6333401], [45.9562866, -66.6333037], [45.9563235, -66.6332895], [45.9563745, -66.633289]],
+  // University Avenue into the junction
+  [[45.9559352, -66.6337192], [45.9561528, -66.633531], [45.9561765, -66.6335069]],
+  // Start of Waterloo Row, south of the underpass
+  [[45.9561673, -66.6332028], [45.9561375, -66.6331881], [45.9557835, -66.6330504], [45.9551611, -66.6328083]],
+];
+
+/** Street names for the closure list; matches the lines drawn on the map. */
+export const CLOSED_STREETS = [
+  "Queen Street",
+  "Brunswick Street",
+  "University Avenue",
+  "Waterloo Row",
+];
+
+export const CITY_ROAD_UPDATES_URL =
+  "https://www.fredericton.ca/resident-services/roads-construction/construction";
