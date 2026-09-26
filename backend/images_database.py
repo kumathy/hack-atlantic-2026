@@ -11,7 +11,6 @@ def get_connection():
     connection.row_factory = sqlite3.Row
     return connection
 
-
 def init_db():
     # Create the images table if it does not already exist.
     with get_connection() as connection:
@@ -22,7 +21,6 @@ def init_db():
                 date TEXT NOT NULL DEFAULT (datetime('now'))
             )
         """)
-
 
 def add_image(image, date=None):
     # Save an image and return its new ID. Date defaults to UTC now.
