@@ -92,9 +92,32 @@ html {
   animation: wiggle 0.4s ease-in-out;
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.fade-in {
+  animation: fade-in 150ms ease-out both;
+}
+
+.modal-in {
+  animation: modal-in 150ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .truck-rain span,
   .bounce-in,
+  .fade-in,
+  .modal-in,
   .wiggle:hover {
     animation: none;
   }

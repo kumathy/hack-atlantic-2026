@@ -110,7 +110,7 @@ export default function ReportModal({
   if (formState === "success") {
     return (
       <div
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#3d2314]/45 p-4 backdrop-blur-sm"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#3d2314]/45 p-4 backdrop-blur-sm fade-in"
         onMouseDown={closeAfterSuccess}
       >
         <div
@@ -120,7 +120,7 @@ export default function ReportModal({
           aria-labelledby="report-success-title"
           tabIndex={-1}
           onMouseDown={(e) => e.stopPropagation()}
-          className="relative w-full max-w-md rounded-3xl border-2 border-[#f5d4b0] bg-[#fef3e8] p-8 text-center shadow-2xl outline-none bounce-in"
+          className="relative w-full max-w-md rounded-3xl border-2 border-[#f5d4b0] bg-[#fef3e8] p-8 text-center shadow-2xl outline-none modal-in"
         >
           <button
             type="button"
@@ -165,7 +165,7 @@ export default function ReportModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#3d2314]/45 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#3d2314]/45 p-4 backdrop-blur-sm fade-in"
       onMouseDown={formState === "submitting" ? undefined : onClose}
     >
       <div
@@ -175,7 +175,7 @@ export default function ReportModal({
         aria-labelledby="report-dialog-title"
         tabIndex={-1}
         onMouseDown={(e) => e.stopPropagation()}
-        className="relative max-h-[calc(100vh-2rem)] w-full max-w-xl overflow-y-auto rounded-3xl border-2 border-[#f5d4b0] bg-[#fef3e8] p-6 shadow-2xl outline-none sm:p-8"
+        className="relative max-h-[calc(100vh-2rem)] w-full max-w-xl overflow-y-auto rounded-3xl border-2 border-[#f5d4b0] bg-[#fef3e8] p-6 shadow-2xl outline-none sm:p-8 modal-in"
       >
         <button
           type="button"
