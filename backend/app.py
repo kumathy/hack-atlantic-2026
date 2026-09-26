@@ -4,7 +4,8 @@ from supabase_client import supabase
 from email_service import send_confirmation_email
 from profiles_database import (
     init_db as init_profiles_db,
-    subscribe_email
+    subscribe_email,
+    unsubscribe_email
 )
 
 from data_taken import (
@@ -126,6 +127,37 @@ def subscribe():
             "success": False,
             "message": "Failed to subscribe"
         }), 500
+
+@app.route("/api/unsubscribe", methods=["GET"])
+def unsubscribe():
+    email = request.args.get("email", "").strip()
+
+    if not email:
+        return "Email is required", 400
+
+    try:
+        unsubscribe_email(email)
+
+        return """
+        <html>
+            <body>
+                <h2>You have been unsubscribed.</h2>
+                <p>You will no longer receive bridge incident alerts.</p>
+            </body>
+        </html>
+        """, 200
+
+    except Exception as e:
+        print("Unsubscribe error:", e)
+
+        return """
+        <html>
+            <body>
+                <h2>Unsubscribe failed.</h2>
+                <p>Please try again later.</p>
+            </body>
+        </html>
+        """, 500
 
 if __name__ == "__main__":
     app.run(debug=True)

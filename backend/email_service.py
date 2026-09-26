@@ -2,6 +2,7 @@ import os
 import smtplib
 from email.message import EmailMessage
 from urllib import response
+from urllib.parse import quote
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,21 +15,53 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
 def send_confirmation_email(recipient):
     message = EmailMessage()
 
-    message["Subject"] = "Bridge Incident Alerts — Subscription Confirmed"
+    message["Subject"] = "You're subscribed to Bridge Incident Alerts"
     message["From"] = SMTP_EMAIL
     message["To"] = recipient
 
-    message.set_content("""
-Hello,
+    # Plain-text version
+    message.set_content(f"""
+You're subscribed!
 
-Your email has been successfully subscribed to Bridge Incident Alerts.
+You will receive an email when a truck impact
+is detected on the bridge.
 
-We'll notify you if our bridge monitoring system detects a critical truck impact.
+Thank you for subscribing to Bridge Incident Alerts.
 
-You can unsubscribe at any time.
-
-— Bridge Monitoring Team
+Unsubscribe:
+http://127.0.0.1:5000/api/unsubscribe?email={quote(recipient)}
 """)
+
+    # HTML version
+    unsubscribe_url = (
+        f"http://127.0.0.1:5000/api/unsubscribe"
+        f"?email={quote(recipient)}"
+    )
+
+    html = f"""
+    <html>
+        <body>
+            <p>You're subscribed!</p>
+
+            <p>
+                You will receive an email when a truck impact
+                is detected on the bridge.
+            </p>
+
+            <p>
+                Thank you for subscribing to Bridge Incident Alerts.
+            </p>
+
+            <p>
+                <a href="{unsubscribe_url}">
+                    Unsubscribe from alerts
+                </a>
+            </p>
+        </body>
+    </html>
+    """
+
+    message.add_alternative(html, subtype="html")
 
     with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
         server.starttls()
