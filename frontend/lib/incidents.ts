@@ -49,7 +49,7 @@ export const INCIDENTS: Incident[] = [
 export const RECORDED_STRIKES = { total: 15, sinceYear: 2007 };
 
 /** To preview the 0-day "OH NO" view, temporarily replace with today's date. */
-export const LAST_INCIDENT_DATE = "2026-09-26";
+export const LAST_INCIDENT_DATE = INCIDENTS[0].date;
 
 /** Photos shown when days = 0. */
 export const ZERO_DAY_PHOTOS = [
