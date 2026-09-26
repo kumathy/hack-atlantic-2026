@@ -1,0 +1,51 @@
+import Image from "next/image";
+import { formatMonthDay } from "@/lib/dates";
+import type { Incident } from "@/lib/incidents";
+
+export default function IncidentCard({ incident }: { incident: Incident }) {
+  return (
+    <div className="relative flex">
+      <div className="w-[4.5rem] sm:w-[6rem] pr-3 text-right flex-shrink-0 pt-4">
+        <time
+          dateTime={incident.date}
+          className="text-xs text-[#c4916a] font-semibold"
+        >
+          {formatMonthDay(incident.date)}
+        </time>
+      </div>
+
+      <div className="absolute left-[4.5rem] sm:left-[6rem] top-5 w-2.5 h-2.5 bg-[#f5d4b0] rounded-full -translate-x-1/2 border-2 border-[#e8c9a8]" />
+
+      <div className="ml-6 flex-1 bg-white rounded-2xl border border-[#f5d4b0] p-4 hover:border-[#ff6b35]/50 hover:shadow-sm transition-all group">
+        <div className="flex gap-3 items-start">
+          <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-[#f5d4b0]">
+            <Image
+              src={incident.photo}
+              alt={`${incident.bridge} incident`}
+              fill
+              sizes="64px"
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap items-start gap-1.5 mb-1">
+              <span className="font-display font-bold text-sm text-[#3d2314]">
+                {incident.bridge}
+              </span>
+              <span className="text-xs bg-[#fff0e8] text-[#c94a1a] border border-[#fde0c8] px-2 py-0.5 rounded-full font-semibold">
+                {incident.damage}
+              </span>
+            </div>
+            <div className="text-xs text-[#c4916a] mb-1.5">
+              {incident.location}
+            </div>
+            <p className="text-xs text-[#a0673a] italic leading-relaxed">
+              &ldquo;{incident.note}&rdquo;
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
