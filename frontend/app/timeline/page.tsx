@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import IncidentCard from "@/components/incident-card";
 import ReportButton from "@/components/report-button";
+import { TbTimeline } from "react-icons/tb";
 import { groupByYear } from "@/lib/dates";
 import { BRIDGE, INCIDENTS, RECORDED_STRIKES } from "@/lib/incidents";
 
 const SUMMARY = `${RECORDED_STRIKES.total} strikes recorded since ${RECORDED_STRIKES.sinceYear}.`;
 
 export const metadata: Metadata = {
-  title: "Hall of Shame — Overpass Watch",
+  title: "Incident Timeline — Thorpe Watch",
   description: SUMMARY,
 };
 
@@ -19,9 +20,12 @@ export default function TimelinePage() {
     <main className="min-h-[calc(100vh-3.5rem)] px-4 pt-16 pb-20 sm:px-6 sm:py-12">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <div className="text-5xl mb-3">🏆</div>
+          <TbTimeline
+            aria-hidden
+            className="block text-5xl mb-3 mx-auto text-[#c94a1a]"
+          />
           <h1 className="font-display font-black text-4xl text-[#c94a1a] mb-2">
-            Hall of Shame
+            Incident Timeline
           </h1>
           <p className="text-xs font-semibold uppercase tracking-widest text-[#c4916a] mb-2">
             {BRIDGE.name} · {BRIDGE.location}

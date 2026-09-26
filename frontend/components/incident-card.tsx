@@ -1,3 +1,4 @@
+import { TbArrowUpRight } from "react-icons/tb";
 import { formatMonthDay } from "@/lib/dates";
 import type { Incident } from "@/lib/incidents";
 
@@ -26,9 +27,10 @@ export default function IncidentCard({ incident }: { incident: Incident }) {
           href={incident.source.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block mt-1.5 text-xs font-semibold text-[#ff6b35] hover:text-[#c94a1a] hover:underline"
+          className="inline-flex items-center gap-0.5 mt-1.5 text-xs font-semibold text-[#ff6b35] hover:text-[#c94a1a] hover:underline"
         >
-          Source: {incident.source.name} ↗
+          Source: {incident.source.name}
+          <TbArrowUpRight aria-hidden />
         </a>
       </div>
     </div>

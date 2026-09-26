@@ -1,3 +1,5 @@
+import { BRIDGE } from "@/lib/incidents";
+
 export default function CounterIncidentView() {
   return (
     <div className="relative z-10 py-12 px-4 max-w-4xl mx-auto text-center">
@@ -9,7 +11,8 @@ export default function CounterIncidentView() {
             Refer to the detour routes.
           </p>
           <p className="text-[#c4916a] text-sm mb-10 max-w-sm mx-auto">
-            A truck has hit the overpass <strong>today</strong>. 
+            A truck has hit the {BRIDGE.name} overpass{" "}
+            <strong>today</strong>.
           </p>
         </div>
     </div>

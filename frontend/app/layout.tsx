@@ -19,9 +19,9 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Overpass Watch",
+  title: "Thorpe Watch",
   description:
-    "Days since a truck last hit the overpass. The bridge is undefeated.",
+    "Tracking truck strikes at the Bill Thorpe Walking Bridge overpass on Waterloo Row, Fredericton.",
 };
 
 export default function RootLayout({
