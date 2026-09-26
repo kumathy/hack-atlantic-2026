@@ -2,9 +2,13 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase_client import supabase
 from email_service import send_confirmation_email
+from profiles_database import (
+    init_db as init_profiles_db,
+    subscribe_email
+)
 
 from data_taken import (
-    init_db,
+    init_db as init_vibration_db,
     save_critical_vibration,
     get_critical_vibrations
 )
@@ -12,7 +16,8 @@ from data_taken import (
 app = Flask(__name__)
 CORS(app)
 
-init_db()
+init_profiles_db()
+init_vibration_db()
 
 # GET DATA FROM SUPABASE
 def get_supabase_bridge_status():
@@ -104,6 +109,10 @@ def subscribe():
         }), 400
 
     try:
+        # Add email to profiles.db and set send_sub = 1
+        subscribe_email(email)
+
+        # Send confirmation email
         send_confirmation_email(email)
 
         return jsonify({
@@ -112,11 +121,10 @@ def subscribe():
         }), 200
 
     except Exception as e:
-        print("Email error:", e)
-
+        print("Subscribe error:", e)
         return jsonify({
             "success": False,
-            "message": "Failed to send confirmation email"
+            "message": "Failed to subscribe"
         }), 500
 
 if __name__ == "__main__":
