@@ -1,16 +1,28 @@
-export type SubscribeResult = "subscribed" | "already-subscribed";
+export type SubscribeResult =
+  | "subscribed"
+  | "already-subscribed";
 
-/**
- * Signs an email up for new-incident alerts.
- *
- * Placeholder until the backend endpoint exists. Expected contract:
- *   POST /subscribers  { "email": string }
- *   201 → subscribed, 409 → already subscribed, anything else → throw
- */
 export async function subscribeToAlerts(
-  email: string,
+  email: string
 ): Promise<SubscribeResult> {
-  void email;
-  await new Promise((resolve) => setTimeout(resolve, 800));
-  return "subscribed";
+  const response = await fetch(
+    "http://127.0.0.1:5000/api/subscribe",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to subscribe");
+  }
+
+  const data = await response.json();
+
+  return data.status;
 }
