@@ -14,11 +14,11 @@
 </p>
 
 <p align="center">
-    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row and became kind of a meme. Thorpe Watch counts the days since the last hit, switches to a live road closure view when         a vibration sensor on the bridge detects a new one, emails subscribers, and keeps a public timeline of past incidents.
+    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row and became kind of a meme. Thorpe Watch counts the days since the last hit, switches to a live road closure view when a vibration sensor on the bridge detects a new one, emails subscribers, and keeps a public timeline of past incidents.
 </p>
 
 <p align="center">
-    Built with Next.js, TypeScript, Tailwind CSS, Leaflet,Python, Flask, SQLite and Supabase.
+    Built with Next.js, TypeScript, Tailwind CSS, Leaflet, Python, Flask, SQLite and Supabase.
 </p>
 
 ## Table of Contents
