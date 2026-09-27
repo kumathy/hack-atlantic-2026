@@ -1,7 +1,14 @@
 "use client";
 
 import "leaflet/dist/leaflet.css";
-import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip } from "react-leaflet";
+import {
+  AttributionControl,
+  CircleMarker,
+  MapContainer,
+  Polyline,
+  TileLayer,
+  Tooltip,
+} from "react-leaflet";
 import { CLOSED_ROADS, UNDERPASS } from "@/lib/closure";
 import { BRIDGE } from "@/lib/incidents";
 
@@ -14,10 +21,14 @@ export default function ClosureMapLeaflet() {
       center={UNDERPASS}
       zoom={17}
       scrollWheelZoom={false}
+      attributionControl={false}
       className="h-full w-full"
     >
+      <AttributionControl
+        prefix='<a href="https://leafletjs.com" target="_blank" rel="noopener noreferrer">Leaflet</a>'
+      />
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Polyline
