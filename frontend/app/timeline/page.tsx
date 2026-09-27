@@ -5,7 +5,11 @@ import { TbTimeline } from "react-icons/tb";
 import { groupByYear } from "@/lib/dates";
 import { BRIDGE, INCIDENTS, RECORDED_STRIKES } from "@/lib/incidents";
 
-const SUMMARY = `${RECORDED_STRIKES.total} strikes recorded since ${RECORDED_STRIKES.sinceYear}.`;
+// Keep in sync with the date column width in IncidentCard
+const RAIL = "absolute left-[4.5rem] sm:left-[6rem] -translate-x-1/2";
+const SPINE = "w-0.5 bg-line";
+
+const SUMMARY =`${RECORDED_STRIKES.total} strikes recorded since ${RECORDED_STRIKES.sinceYear}.`;
 
 export const metadata: Metadata = {
   title: "Incident Timeline — Thorpe Watch",
@@ -23,7 +27,7 @@ export default function TimelinePage() {
             aria-hidden
             className="block text-5xl mb-3 mx-auto text-alert"
           />
-          <h1 className="font-display font-black text-4xl text-alert mb-2">
+          <h1 className="font-display font-black text-4xl text-ink mb-2">
             Incident Timeline
           </h1>
           <p className="text-xs font-semibold uppercase tracking-widest text-subtle mb-2">
@@ -34,41 +38,47 @@ export default function TimelinePage() {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Vertical spine */}
-          <div className="absolute left-[4.5rem] sm:left-[6rem] top-0 bottom-0 w-0.5 bg-line" />
-
-          {grouped.map(([year, incidents]) => (
-            <section key={year} className="mb-10">
-              <div className="relative flex items-center mb-5">
+        <div>
+          {grouped.map(([year, incidents], yearIndex) => (
+            <section key={year}>
+              <div className="relative flex items-start pb-5">
+                <div
+                  className={`${RAIL} ${SPINE} ${yearIndex === 0 ? "top-3.5" : "top-0"} bottom-0`}
+                />
                 <div className="w-[4.5rem] sm:w-[6rem] pr-3 text-right">
-                  <h2 className="font-display font-black text-xl text-accent">
+                  <h2 className="font-display font-black text-xl leading-7 text-accent">
                     {year}
                   </h2>
                 </div>
-                <div className="absolute left-[4.5rem] sm:left-[6rem] w-4 h-4 bg-accent rounded-full -translate-x-1/2 ring-4 ring-surface" />
-                <div className="ml-6 text-xs font-bold text-subtle bg-tint px-2.5 py-0.5 rounded-full">
+                <div
+                  className={`${RAIL} top-3.5 -translate-y-1/2 w-4 h-4 bg-accent rounded-full`}
+                />
+                <div className="ml-6 mt-1 text-xs font-bold text-subtle bg-tint px-2.5 py-0.5 rounded-full">
                   {incidents.length}{" "}
                   {incidents.length === 1 ? "incident" : "incidents"}
                 </div>
               </div>
 
-              <div className="space-y-3">
-                {incidents.map((inc) => (
-                  <IncidentCard
-                    key={inc.date}
-                    incident={inc}
-                  />
-                ))}
-              </div>
+              {incidents.map((inc, i) => (
+                <div
+                  key={inc.date}
+                  className={`relative ${i === incidents.length - 1 ? "pb-10" : "pb-3"}`}
+                >
+                  <div className={`${RAIL} ${SPINE} top-0 bottom-0`} />
+                  <IncidentCard incident={inc} />
+                </div>
+              ))}
             </section>
           ))}
 
           {/* End cap */}
-          <div className="relative flex items-center">
-            <div className="w-[4.5rem] sm:w-[6rem]" />
-            <div className="absolute left-[4.5rem] sm:left-[6rem] w-3 h-3 bg-line rounded-full -translate-x-1/2" />
-            <div className="ml-6 text-xs text-subtle italic">
+          <div className="relative flex items-start">
+            <div className={`${RAIL} ${SPINE} top-0 h-2`} />
+            <div className="w-[4.5rem] sm:w-[6rem] shrink-0" />
+            <div
+              className={`${RAIL} top-2 -translate-y-1/2 w-3 h-3 bg-line rounded-full`}
+            />
+            <div className="ml-6 text-xs leading-4 text-subtle italic">
               Plus ~{RECORDED_STRIKES.total - INCIDENTS.length} earlier strikes
               since {RECORDED_STRIKES.sinceYear}. Remember one?{" "}
               <ReportButton className="not-italic font-semibold text-accent hover:text-accent-hover hover:underline">
