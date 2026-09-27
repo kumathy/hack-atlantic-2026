@@ -42,23 +42,23 @@ export const INCIDENTS: Incident[] = [
   },
   {
     date: "2024-07-28",
-    damage: "Over-height truck hit the overpass",
-    note: "The truck backed out before becoming wedged beneath the bridge.",
+    damage: "Over-height truck strikes overpass",
+    note: "Driver reversed out before the truck became wedged.",
   },
   {
     date: "2024-04-27",
-    damage: "Semi struck the trail overpass",
-    note: "A semi truck struck the overpass.",
+    damage: "Semi-trailer strikes overpass",
+    note: "Few details were reported.",
   },
   {
     date: "2023-09-09",
-    damage: "Transport truck struck the overpass",
-    note: "The impact tore the roof off one truck and damaged another.",
+    damage: "Truck roof torn off, second truck damaged",
+    note: "Transport truck struck the overpass and damaged another.",
   },
   {
     date: "2006",
-    damage: "Truck photographed stuck beneath the bridge",
-    note: "The year is known, but the exact date is not.",
+    damage: "Truck stuck under overpass",
+    note: "Photographed in 2006.",
     source: {
       name: "Wikimedia Commons",
       url: "https://en.wikipedia.org/wiki/Fredericton_Railway_Bridge",

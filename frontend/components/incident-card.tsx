@@ -7,15 +7,20 @@ import { useDaysSince } from "@/lib/use-days-since";
 
 export default function IncidentCard({ incident }: { incident: Incident }) {
   const isToday = useDaysSince(incident.date) === 0;
+  const yearOnly = incident.date.length === 4;
 
   return (
     <div className="relative flex">
       <div className="w-[4.5rem] sm:w-[6rem] pr-3 text-right flex-shrink-0 pt-[21px] text-xs leading-4">
         <time
           dateTime={incident.date}
-          className="text-subtle font-semibold"
+          className={`text-subtle font-semibold ${yearOnly ? "italic" : ""}`}
         >
-          {isToday ? "Today" : formatMonthDay(incident.date)}
+          {yearOnly
+            ? "Unknown"
+            : isToday
+              ? "Today"
+              : formatMonthDay(incident.date)}
         </time>
       </div>
 
