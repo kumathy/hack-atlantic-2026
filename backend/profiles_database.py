@@ -104,3 +104,37 @@ def get_subscribed_profiles():
             """
         ).fetchall()
         return [dict(row) for row in rows]
+
+def add_or_update_profile(name, email, send_sub=False):
+    with get_connection() as connection:
+        existing = connection.execute(
+            """
+            SELECT id
+            FROM profiles
+            WHERE email = ?
+            """,
+            (email,)
+        ).fetchone()
+
+        if existing:
+            connection.execute(
+                """
+                UPDATE profiles
+                SET name = ?, send_sub = ?
+                WHERE email = ?
+                """,
+                (name, int(send_sub), email)
+            )
+            return existing["id"]
+
+        cursor = connection.execute(
+            """
+            INSERT INTO profiles
+                (name, email, send_sub)
+            VALUES
+                (?, ?, ?)
+            """,
+            (name, email, int(send_sub))
+        )
+
+        return cursor.lastrowid
