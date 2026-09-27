@@ -8,7 +8,7 @@ from email_service import send_confirmation_email
 from notification_service import send_impact_alert
 from profiles_database import (
     init_db as init_profiles_db,
-    subscribe_email,
+    add_or_update_profile,
     unsubscribe_email
 )
 
@@ -129,7 +129,9 @@ def reset_bridge_status():
 def subscribe():
     data = request.get_json()
 
+    name = data.get("name", "").strip()
     email = data.get("email", "").strip()
+    send_sub = bool(data.get("send_sub", True))
 
     if not email:
         return jsonify({
@@ -138,11 +140,14 @@ def subscribe():
         }), 400
 
     try:
-        # Add email to profiles.db and set send_sub = 1
-        subscribe_email(email)
+        add_or_update_profile(
+            name=name if name else "Anonymous",
+            email=email,
+            send_sub=send_sub
+        )
 
-        # Send confirmation email
-        send_confirmation_email(email)
+        if send_sub:
+            send_confirmation_email(email)
 
         return jsonify({
             "success": True,
@@ -150,10 +155,11 @@ def subscribe():
         }), 200
 
     except Exception as e:
-        print("Subscribe error:", e)
+        print("Subscribe error:", repr(e))
+
         return jsonify({
             "success": False,
-            "message": "Failed to subscribe"
+            "message": "Failed to save profile"
         }), 500
 
 @app.route("/api/unsubscribe", methods=["GET"])
