@@ -1,5 +1,5 @@
 "use client";
-
+import { submitReportProfile } from "@/lib/alerts";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import {
   TbCameraPlus,
@@ -9,7 +9,6 @@ import {
   TbSend,
   TbX,
 } from "react-icons/tb";
-import { subscribeToAlerts } from "@/lib/alerts";
 
 type FormState = "idle" | "submitting" | "success";
 
@@ -89,11 +88,18 @@ export default function ReportModal({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setFormState("submitting");
-    const [, alerts] = await Promise.allSettled([
+
+    const [, profile] = await Promise.allSettled([
       new Promise((r) => setTimeout(r, 1400)),
-      wantsAlerts ? subscribeToAlerts(form.email.trim()) : null,
+
+      submitReportProfile(
+        form.name.trim(),
+        form.email.trim(),
+        wantsAlerts
+      ),
     ]);
-    setAlertsFailed(alerts.status === "rejected");
+
+    setAlertsFailed(profile.status === "rejected");
     setFormState("success");
   }
 
