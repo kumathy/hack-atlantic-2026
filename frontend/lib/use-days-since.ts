@@ -9,10 +9,10 @@ function subscribe(onChange: () => void) {
 }
 
 // null on the server to avoid a hydration mismatch
-export function useDaysSince(dateStr: string): number | null {
+export function useDaysSince(dateStr: string | null): number | null {
   return useSyncExternalStore(
     subscribe,
-    () => daysSince(dateStr),
+    () => (dateStr ? daysSince(dateStr) : null),
     () => null,
   );
 }

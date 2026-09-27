@@ -27,25 +27,20 @@ def save_critical_vibration(
     acknowledged
 ):
     with get_connection() as connection:
-        with get_connection() as connection:
-            connection.execute("""
-                DELETE FROM critical_vibrations
-            """)
-
-            cursor = connection.execute(
-                """
-                INSERT INTO critical_vibrations
-                    (supabase_id, status, impact_time, acknowledged)
-                VALUES
-                    (?, ?, ?, ?)
-                """,
-                (
-                    event_id,
-                    status,
-                    impact_time,
-                    acknowledged
-                )
+        cursor = connection.execute(
+            """
+            INSERT INTO critical_vibrations
+                (supabase_id, status, impact_time, acknowledged)
+            VALUES
+                (?, ?, ?, ?)
+            """,
+            (
+                event_id,
+                status,
+                impact_time,
+                acknowledged
             )
+        )
 
         return cursor.lastrowid
 

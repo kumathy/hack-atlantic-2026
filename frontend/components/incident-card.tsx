@@ -23,15 +23,17 @@ export default function IncidentCard({ incident }: { incident: Incident }) {
         <p className="text-xs text-muted leading-relaxed">
           {incident.note}
         </p>
-        <a
-          href={incident.source.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-0.5 mt-1.5 text-xs font-semibold text-accent hover:text-accent-hover hover:underline"
-        >
-          Source: {incident.source.name}
-          <TbArrowUpRight aria-hidden />
-        </a>
+        {incident.source && (
+          <a
+            href={incident.source.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-0.5 mt-1.5 text-xs font-semibold text-accent hover:text-accent-hover hover:underline"
+          >
+            Source: {incident.source.name}
+            <TbArrowUpRight aria-hidden />
+          </a>
+        )}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ export interface Incident {
   date: string;
   damage: string;
   note: string;
-  source: { name: string; url: string };
+  source?: { name: string; url: string };
 }
 
 export const BRIDGE = {
@@ -43,8 +43,6 @@ export const INCIDENTS: Incident[] = [
 
 // Total reported by the city and press; most older strikes aren't dated online
 export const RECORDED_STRIKES = { total: 15, sinceYear: 2007 };
-
-export const LAST_INCIDENT_DATE = INCIDENTS[0].date;
 
 export const ZERO_DAY_PHOTOS = [
   {

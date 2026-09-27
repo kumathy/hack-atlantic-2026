@@ -9,8 +9,8 @@ import CounterPlaceholder from "@/components/counter-placeholder";
 import CounterIncidentView from "@/components/counter-incident-view";
 import ClosureMap from "@/components/closure-map";
 import NormalDayView from "@/components/counter-normal-day";
-import { LAST_INCIDENT_DATE } from "@/lib/incidents";
 import { useDaysSince } from "@/lib/use-days-since";
+import { useIncidents } from "@/lib/use-incidents";
 
 export default function HomePage() {
   return (
@@ -34,7 +34,8 @@ function usePreviewDays(days: number | null): number | null {
 }
 
 function Home() {
-  const days = usePreviewDays(useDaysSince(LAST_INCIDENT_DATE));
+  const lastIncidentDate = useIncidents()?.[0]?.date ?? null;
+  const days = usePreviewDays(useDaysSince(lastIncidentDate));
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isAlertsOpen, setIsAlertsOpen] = useState(false);
   const isIncident = days === 0;
@@ -68,7 +69,9 @@ function Home() {
         ) : isIncident ? (
           <CounterIncidentView>{actions}</CounterIncidentView>
         ) : (
-          <NormalDayView days={days}>{actions}</NormalDayView>
+          <NormalDayView days={days} lastIncidentDate={lastIncidentDate!}>
+            {actions}
+          </NormalDayView>
         )}
 
         {isIncident && (

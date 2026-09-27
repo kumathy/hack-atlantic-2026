@@ -1,12 +1,13 @@
-import { LAST_INCIDENT_DATE } from "@/lib/incidents";
 import { formatLongDate } from "@/lib/dates";
 import CounterLayout from "@/components/counter-layout";
 
 export default function NormalDayView({
   days,
+  lastIncidentDate,
   children,
 }: {
   days: number;
+  lastIncidentDate: string;
   children?: React.ReactNode;
 }) {
   return (
@@ -37,7 +38,7 @@ export default function NormalDayView({
           <p className="text-subtle text-sm mt-2 mb-8">
             Last incident:{" "}
             <span className="font-semibold text-muted">
-              {formatLongDate(LAST_INCIDENT_DATE)}
+              {formatLongDate(lastIncidentDate)}
             </span>
           </p>
           {children}
