@@ -9,7 +9,7 @@ export default function BridgeBanner() {
         href={BRIDGE.wikipedia}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative block h-[16vh] overflow-hidden rounded-2xl transition-opacity hover:opacity-90"
+        className="relative block h-[16vh] overflow-hidden rounded-2xl transition-transform duration-200 hover:scale-[1.03] motion-reduce:transition-none"
       >
         <Image
           src={bridgePhoto}
