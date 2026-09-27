@@ -194,7 +194,7 @@ export default function ReportModal({
         aria-labelledby="report-dialog-title"
         tabIndex={-1}
         onMouseDown={(e) => e.stopPropagation()}
-        className="relative max-h-[calc(100vh-2rem)] w-full max-w-xl overflow-y-auto rounded-3xl border-2 border-line bg-surface p-6 shadow-2xl outline-none sm:p-8 modal-in"
+        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-xl overflow-y-auto rounded-3xl border-2 border-line bg-surface p-6 shadow-2xl outline-none sm:p-8 modal-in"
       >
         <button
           type="button"
