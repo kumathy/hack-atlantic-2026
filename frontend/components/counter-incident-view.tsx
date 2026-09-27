@@ -9,6 +9,7 @@ export default function CounterIncidentView({
 }) {
   return (
     <CounterLayout
+      reserveBottom
       top={
         <>
           <h1 className="font-display font-black text-[clamp(2.25rem,7vw,3.75rem)] leading-tight text-ink mb-3">
@@ -24,7 +25,7 @@ export default function CounterIncidentView({
         </>
       }
       middle={
-        <p className="font-counter font-black leading-none whitespace-nowrap text-[clamp(3rem,13vw,10rem)] text-alert">
+        <p className="font-counter font-black leading-none whitespace-nowrap text-[clamp(2.5rem,11vw,8.5rem)] text-alert">
           Road Closed
         </p>
       }

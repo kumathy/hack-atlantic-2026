@@ -10,7 +10,7 @@ export default function CounterPlaceholder() {
               Thorpe Watch
             </h1>
           }
-          middle={<div className="h-[clamp(6rem,22vw,15rem)] w-64" />}
+          middle={<div className="h-[clamp(5rem,19vw,12.75rem)] w-64" />}
           bottom={null}
         />
       </div>

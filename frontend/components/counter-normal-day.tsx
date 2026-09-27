@@ -21,11 +21,11 @@ export default function NormalDayView({
         <div className="flex items-baseline gap-[clamp(0.5rem,1.75vw,1.25rem)] font-counter font-black leading-none text-counter">
           <span
             className="tabular-nums"
-            style={{ fontSize: "clamp(6rem,22vw,15rem)" }}
+            style={{ fontSize: "clamp(5rem,19vw,12.75rem)" }}
           >
             {days.toLocaleString()}
           </span>
-          <span className="text-[clamp(1.75rem,6vw,4rem)]">
+          <span className="text-[clamp(1.5rem,5vw,3.5rem)]">
             {days === 1 ? "day" : "days"}
           </span>
         </div>

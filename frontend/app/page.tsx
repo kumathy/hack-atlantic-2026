@@ -103,7 +103,7 @@ function Home() {
             }}
             className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-xs font-semibold uppercase tracking-widest text-muted hover:text-brand transition-colors"
           >
-            Road closure map
+            Road closures &amp; details
             <TbChevronDown
               aria-hidden
               className="text-2xl animate-bounce motion-reduce:animate-none"
