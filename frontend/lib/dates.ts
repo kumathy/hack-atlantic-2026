@@ -1,8 +1,14 @@
 import type { Incident } from "./incidents";
 
+function parseIncidentDate(dateStr: string): Date {
+  return /^\d{4}$/.test(dateStr)
+    ? new Date(Number(dateStr), 0, 1)
+    : new Date(dateStr + "T00:00:00");
+}
+
 /** Whole days between `dateStr` (local midnight) and today. */
 export function daysSince(dateStr: string): number {
-  const last = new Date(dateStr + "T00:00:00");
+  const last = parseIncidentDate(dateStr);
   const now = new Date();
   last.setHours(0, 0, 0, 0);
   now.setHours(0, 0, 0, 0);
@@ -12,7 +18,7 @@ export function daysSince(dateStr: string): number {
 export function groupByYear(incidents: Incident[]): [number, Incident[]][] {
   const map = new Map<number, Incident[]>();
   for (const inc of incidents) {
-    const yr = new Date(inc.date + "T00:00:00").getFullYear();
+    const yr = parseIncidentDate(inc.date).getFullYear();
     if (!map.has(yr)) map.set(yr, []);
     map.get(yr)!.push(inc);
   }
@@ -20,7 +26,8 @@ export function groupByYear(incidents: Incident[]): [number, Incident[]][] {
 }
 
 export function formatLongDate(dateStr: string): string {
-  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
+  if (/^\d{4}$/.test(dateStr)) return dateStr;
+  return parseIncidentDate(dateStr).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -28,14 +35,15 @@ export function formatLongDate(dateStr: string): string {
 }
 
 export function formatMonthDay(dateStr: string): string {
-  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
+  if (/^\d{4}$/.test(dateStr)) return dateStr;
+  return parseIncidentDate(dateStr).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
 }
 
 export function daysBetween(from: string, to: string): number {
-  const a = new Date(from + "T00:00:00");
-  const b = new Date(to + "T00:00:00");
+  const a = parseIncidentDate(from);
+  const b = parseIncidentDate(to);
   return Math.round((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24));
 }

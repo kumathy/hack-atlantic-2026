@@ -40,6 +40,30 @@ export const INCIDENTS: Incident[] = [
       url: "https://www.ctvnews.ca/atlantic/new-brunswick/article/transport-truck-gets-stuck-under-fredericton-overpass/",
     },
   },
+  {
+    date: "2024-07-28",
+    damage: "Over-height truck hit the overpass",
+    note: "The truck backed out before becoming wedged beneath the bridge.",
+  },
+  {
+    date: "2024-04-27",
+    damage: "Semi struck the trail overpass",
+    note: "A semi truck struck the overpass.",
+  },
+  {
+    date: "2023-09-09",
+    damage: "Transport truck struck the overpass",
+    note: "The impact tore the roof off one truck and damaged another.",
+  },
+  {
+    date: "2006",
+    damage: "Truck photographed stuck beneath the bridge",
+    note: "The year is known, but the exact date is not.",
+    source: {
+      name: "Wikimedia Commons",
+      url: "https://en.wikipedia.org/wiki/Fredericton_Railway_Bridge",
+    },
+  },
 ];
 
 // Total reported by the city and press; most older strikes aren't dated online
