@@ -4,7 +4,7 @@
     Tracking truck strikes at the overpass of the Bill Thorpe Walking Bridge in Fredericton, NB
 </p>
 
-<!-- Add screenshots here: drag images into this file on GitHub to upload them -->
+<img width="1565" height="1420" alt="screenshot_20260927_031317" src="https://github.com/user-attachments/assets/b0aeec7d-2d00-4462-ad65-819bb3ff3416" />
 
 This project was built for [Hack Atlantic 2026](https://hack-atlantic-sep27.devpost.com/).
 
