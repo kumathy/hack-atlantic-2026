@@ -1,7 +1,11 @@
+import threading
+import time
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from supabase_client import supabase
 from email_service import send_confirmation_email
+from notification_service import send_impact_alert
 from profiles_database import (
     init_db as init_profiles_db,
     subscribe_email,
@@ -41,7 +45,7 @@ def bridge_status():
 @app.route("/api/save-vibration", methods=["POST"])
 def save_vibration():
     data = get_supabase_bridge_status()
-    
+
     if not data:
         return jsonify({
             "success": False,
@@ -54,10 +58,11 @@ def save_vibration():
     if bridge["status"] != "IMPACT_DETECTED":
         return jsonify({
             "success": False,
-            "message": "Holy Sheet!!! It's coming!",
+            "message": "No critical vibration detected",
             "status": bridge["status"]
         }), 200
 
+    # 1. Save new vibration to vibration.db
     save_critical_vibration(
         event_id=bridge["id"],
         status=bridge["status"],
@@ -65,12 +70,35 @@ def save_vibration():
         acknowledged=bridge["acknowledged"]
     )
 
+    print("New vibration added to vibration.db")
+
+    # 2. Send email to subscribers
+    send_impact_alert(impact_time=bridge["impact_time"])
+
+    print("Alert emails sent")
+
+    # 3. PATCH Supabase after successful processing
+    response = (
+        supabase
+        .table("bridge_status")
+        .update({
+            "status": "NO_IMPACT",
+            "acknowledged": True,
+            "impact_time": None
+        })
+        .eq("id", 1)
+        .execute()
+    )
+
+    print("Supabase updated:")
+    print(response.data)
+
     return jsonify({
         "success": True,
-        "message": "Critical vibration saved to SQLite",
+        "message": "Vibration saved and Supabase updated",
         "data": bridge
-    })
-
+    }), 200
+    
 # GET DATA FROM SQLITE
 @app.route("/api/vibrations", methods=["GET"])
 def vibrations():
@@ -159,5 +187,59 @@ def unsubscribe():
         </html>
         """, 500
 
+def monitor_bridge():
+    print("Bridge monitor started.")
+
+    while True:
+        try:
+            data = get_supabase_bridge_status()
+
+            if data:
+                bridge = data[0]
+
+                if bridge["status"] == "IMPACT_DETECTED":
+                    print("🚨 IMPACT DETECTED!")
+
+                    # Save event
+                    save_critical_vibration(
+                        event_id=bridge["id"],
+                        status=bridge["status"],
+                        impact_time=bridge["impact_time"],
+                        acknowledged=bridge["acknowledged"]
+                    )
+
+                    print("[X] Saved to vibration.db")
+
+                    # Send notifications
+                    send_impact_alert(
+                        impact_time=bridge["impact_time"]
+                    )
+
+                    print("[X] Notifications processed")
+
+                    # Automatically reset Supabase
+                    supabase.table("bridge_status").update({
+                        "status": "NO_IMPACT",
+                        "acknowledged": True,
+                        "impact_time": None
+                    }).eq("id", 1).execute()
+
+                    print("[X] Supabase automatically reset to NO_IMPACT")
+
+        except Exception as e:
+            print("MONITOR ERROR:", repr(e))
+        time.sleep(2)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    monitor_thread = threading.Thread(
+        target=monitor_bridge,
+        daemon=True
+    )
+
+    monitor_thread.start()
+    app.run(
+        host="127.0.0.1",
+        port=5000,
+        debug=True,
+        use_reloader=False
+    )

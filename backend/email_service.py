@@ -1,8 +1,8 @@
 import os
 import smtplib
 from email.message import EmailMessage
-from urllib import response
 from urllib.parse import quote
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,6 +12,7 @@ SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
 SMTP_EMAIL = os.getenv("SMTP_EMAIL")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
 
+
 def send_confirmation_email(recipient):
     message = EmailMessage()
 
@@ -19,37 +20,36 @@ def send_confirmation_email(recipient):
     message["From"] = SMTP_EMAIL
     message["To"] = recipient
 
-    # Plain-text version
-    message.set_content(f"""
-You're subscribed!
-
-You will receive an email when a truck impact
-is detected on the bridge.
-
-Thank you for subscribing to Bridge Incident Alerts.
-
-Unsubscribe:
-http://127.0.0.1:5000/api/unsubscribe?email={quote(recipient)}
-""")
-
-    # HTML version
     unsubscribe_url = (
         f"http://127.0.0.1:5000/api/unsubscribe"
         f"?email={quote(recipient)}"
     )
 
+    message.set_content(f"""
+You're subscribed!
+
+You will receive an email when a critical vibration
+is detected on the bridge.
+
+Thank you for subscribing to Bridge Incident Alerts.
+
+Unsubscribe from alerts:
+{unsubscribe_url}
+""")
+
     html = f"""
     <html>
         <body>
-            <p>You're subscribed!</p>
+            <h2>You're subscribed!</h2>
 
             <p>
-                You will receive an email when a truck impact
-                is detected on the bridge.
+                You will receive an email when a critical
+                vibration is detected on the bridge.
             </p>
 
             <p>
-                Thank you for subscribing to Bridge Incident Alerts.
+                Thank you for subscribing to
+                <strong>Bridge Incident Alerts</strong>.
             </p>
 
             <p>
@@ -67,5 +67,72 @@ http://127.0.0.1:5000/api/unsubscribe?email={quote(recipient)}
         server.starttls()
         server.login(SMTP_EMAIL, SMTP_PASSWORD)
         server.send_message(message)
-        print("SMTP response:", response)
-        print(f"Email sent successfully to {recipient}")
+
+    print(f"Confirmation email sent to {recipient}")
+
+
+def send_impact_alert_email(recipient, impact_time):
+    message = EmailMessage()
+
+    message["Subject"] = "⚠️ Critical Bridge Impact Detected"
+    message["From"] = SMTP_EMAIL
+    message["To"] = recipient
+
+    unsubscribe_url = (
+        f"http://127.0.0.1:5000/api/unsubscribe"
+        f"?email={quote(recipient)}"
+    )
+
+    message.set_content(f"""
+Critical Bridge Impact Detected
+
+A critical vibration event has been detected on the bridge.
+
+Impact time:
+{impact_time}
+
+Please check the bridge monitoring system for more information.
+
+Unsubscribe from alerts:
+{unsubscribe_url}
+""")
+
+    html = f"""
+    <html>
+        <body>
+            <h2>⚠️ Critical Bridge Impact Detected</h2>
+
+            <p>
+                A <strong>critical vibration event</strong>
+                has been detected on the bridge.
+            </p>
+
+            <p>
+                <strong>Impact time:</strong><br>
+                {impact_time}
+            </p>
+
+            <p>
+                Please check the bridge monitoring system
+                for more information.
+            </p>
+
+            <hr>
+
+            <p style="font-size: 12px;">
+                <a href="{unsubscribe_url}">
+                    Unsubscribe from alerts
+                </a>
+            </p>
+        </body>
+    </html>
+    """
+
+    message.add_alternative(html, subtype="html")
+
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+        server.starttls()
+        server.login(SMTP_EMAIL, SMTP_PASSWORD)
+        server.send_message(message)
+
+    print(f"Impact alert sent to {recipient}")
