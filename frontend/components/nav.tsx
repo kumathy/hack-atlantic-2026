@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBridgeCircleExclamation } from "react-icons/fa6";
 import { TbHome, TbTimeline } from "react-icons/tb";
+import ThemeToggle from "@/components/theme-toggle";
 
 const LINKS = [
   { href: "/", label: "Home", Icon: TbHome },
@@ -26,7 +27,7 @@ export default function Nav() {
           </span>
         </Link>
 
-        <div className="flex gap-1">
+        <div className="flex items-center gap-1">
           {LINKS.map(({ href, label, Icon }) => {
             const isActive = pathname === href;
             return (
@@ -38,7 +39,7 @@ export default function Nav() {
                   inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all
                   ${
                     isActive
-                      ? "bg-nav text-white shadow-sm"
+                      ? "bg-nav-fill text-white shadow-sm"
                       : "text-muted hover:bg-tint hover:text-nav"
                   }
                 `}
@@ -48,6 +49,7 @@ export default function Nav() {
               </Link>
             );
           })}
+          <ThemeToggle />
         </div>
       </div>
     </nav>

@@ -7,6 +7,7 @@
 
   /* GNB Design System palette */
   --color-surface: #f3f3f3;
+  --color-card: #ffffff;
   --color-tint: #eeeeee;
   --color-line: #dddddd;
   --color-line-strong: #aaaaaa;
@@ -16,13 +17,38 @@
   --color-ink: #333333;
 
   --color-brand: #006055;
+  --color-brand-hover: #00463e;
   --color-counter: #00524a;
   --color-accent: #006055;
   --color-accent-hover: #00463e;
 
   --color-nav: #79242f;
   --color-nav-hover: #5e1c25;
+  --color-nav-fill: #79242f;
   --color-alert: #79242f;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-surface: #141414;
+  --color-card: #1e1e1e;
+  --color-tint: #262626;
+  --color-line: #333333;
+  --color-line-strong: #555555;
+  --color-hint: #858585;
+  --color-subtle: #9a9a9a;
+  --color-muted: #b3b3b3;
+  --color-ink: #e8e8e8;
+
+  --color-brand: #599890;
+  --color-brand-hover: #73a8a2;
+  --color-counter: #4d9088;
+  --color-accent-hover: #1f7369;
+
+  --color-nav: #893e48;
+  --color-nav-hover: #945059;
+  --color-alert: #893e48;
 }
 
 html {

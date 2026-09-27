@@ -78,7 +78,7 @@ export default function IncidentDetails({
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="flex flex-col-reverse justify-end gap-1 rounded-xl border border-line bg-white p-3"
+              className="flex flex-col-reverse justify-end gap-1 rounded-xl border border-line bg-card p-3"
             >
               <dt className="text-xs text-muted">{stat.label}</dt>
               <dd className="font-display text-2xl font-semibold text-ink">
@@ -89,7 +89,7 @@ export default function IncidentDetails({
         </dl>
         <Link
           href="/timeline"
-          className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-accent-hover hover:underline"
+          className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand hover:text-brand-hover hover:underline"
         >
           See the full timeline
           <TbArrowRight aria-hidden />

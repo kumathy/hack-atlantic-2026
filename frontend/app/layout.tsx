@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import Nav from "@/components/nav";
 import "./globals.css";
 
@@ -29,10 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
+    >
       <body className="min-h-screen bg-surface text-ink font-body">
-        <Nav />
-        {children}
+        <ThemeProvider attribute="class" disableTransitionOnChange>
+          <Nav />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

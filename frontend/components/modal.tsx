@@ -40,7 +40,7 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/45 p-4 backdrop-blur-sm fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm fade-in"
       onMouseDown={onClose}
     >
       <div
@@ -56,7 +56,7 @@ export default function Modal({
           type="button"
           onClick={onClose}
           aria-label="Close dialog"
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-muted transition-colors hover:text-brand"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-card text-xl font-bold text-muted transition-colors hover:text-brand"
         >
           <TbX aria-hidden />
         </button>

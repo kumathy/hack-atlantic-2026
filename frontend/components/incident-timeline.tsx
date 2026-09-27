@@ -40,7 +40,7 @@ export default function IncidentTimeline() {
         <div className="text-center mb-12">
           <TbTimeline
             aria-hidden
-            className="block text-5xl mb-3 mx-auto text-alert"
+            className="block text-5xl mb-3 mx-auto text-nav"
           />
           <h1 className="font-display font-black text-4xl text-ink mb-2">
             Incident Timeline
@@ -60,12 +60,12 @@ export default function IncidentTimeline() {
                     className={`${RAIL} ${SPINE} ${yearIndex === 0 ? "top-3.5" : "top-0"} bottom-0`}
                   />
                   <div className="w-[4.5rem] sm:w-[6rem] pr-3 text-right">
-                    <h2 className="font-display font-black text-xl leading-7 text-accent">
+                    <h2 className="font-display font-black text-xl leading-7 text-brand">
                       {year}
                     </h2>
                   </div>
                   <div
-                    className={`${RAIL} top-3.5 -translate-y-1/2 w-4 h-4 bg-accent rounded-full`}
+                    className={`${RAIL} top-3.5 -translate-y-1/2 w-4 h-4 bg-brand rounded-full`}
                   />
                   <div className="ml-6 mt-1 text-xs font-bold text-subtle bg-tint px-2.5 py-0.5 rounded-full">
                     {incidents.length}{" "}
@@ -95,7 +95,7 @@ export default function IncidentTimeline() {
               <div className="ml-6 text-xs leading-4 text-subtle italic">
                 Plus ~{RECORDED_STRIKES.total - INCIDENTS.length} earlier strikes
                 since {RECORDED_STRIKES.sinceYear}. Remember one?{" "}
-                <ReportButton className="not-italic font-semibold text-accent hover:text-accent-hover hover:underline">
+                <ReportButton className="not-italic font-semibold text-brand hover:text-brand-hover hover:underline">
                   Report it
                 </ReportButton>
               </div>

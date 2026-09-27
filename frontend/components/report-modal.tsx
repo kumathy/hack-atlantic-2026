@@ -122,7 +122,7 @@ export default function ReportModal({
   if (formState === "success") {
     return (
       <div
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/45 p-4 backdrop-blur-sm fade-in"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm fade-in"
         onMouseDown={closeAfterSuccess}
       >
         <div
@@ -138,7 +138,7 @@ export default function ReportModal({
             type="button"
             onClick={closeAfterSuccess}
             aria-label="Close report dialog"
-            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-muted transition-colors hover:text-brand"
+            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-card text-xl font-bold text-muted transition-colors hover:text-brand"
           >
             <TbX aria-hidden />
           </button>
@@ -172,7 +172,7 @@ export default function ReportModal({
             </button>
             <button
               onClick={closeAfterSuccess}
-              className="px-6 py-2.5 bg-white border-2 border-line text-brand font-bold rounded-full hover:border-accent transition-colors text-sm"
+              className="px-6 py-2.5 bg-card border-2 border-line text-brand font-bold rounded-full hover:border-brand transition-colors text-sm"
             >
               Back to counter
             </button>
@@ -184,7 +184,7 @@ export default function ReportModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/45 p-4 backdrop-blur-sm fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm fade-in"
       onMouseDown={formState === "submitting" ? undefined : onClose}
     >
       <div
@@ -201,7 +201,7 @@ export default function ReportModal({
           onClick={onClose}
           disabled={formState === "submitting"}
           aria-label="Close report dialog"
-          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-bold text-muted transition-colors hover:text-brand disabled:cursor-not-allowed disabled:opacity-50"
+          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-card text-xl font-bold text-muted transition-colors hover:text-brand disabled:cursor-not-allowed disabled:opacity-50"
         >
           <TbX aria-hidden />
         </button>
@@ -229,7 +229,7 @@ export default function ReportModal({
               htmlFor="report-name"
               className="block text-xs font-bold uppercase tracking-widest text-muted mb-1.5"
             >
-              Your Name <span className="text-accent">*</span>
+              Your Name <span className="text-brand">*</span>
             </label>
             <input
               required
@@ -239,7 +239,7 @@ export default function ReportModal({
               value={form.name}
               onChange={handleChange}
               placeholder="Jane Smith"
-              className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors"
+              className="w-full bg-card border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-brand transition-colors"
             />
           </div>
 
@@ -248,7 +248,7 @@ export default function ReportModal({
               htmlFor="report-email"
               className="block text-xs font-bold uppercase tracking-widest text-muted mb-1.5"
             >
-              Email Address <span className="text-accent">*</span>
+              Email Address <span className="text-brand">*</span>
             </label>
             <input
               required
@@ -258,7 +258,7 @@ export default function ReportModal({
               value={form.email}
               onChange={handleChange}
               placeholder="you@example.com"
-              className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors"
+              className="w-full bg-card border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-brand transition-colors"
             />
           </div>
 
@@ -285,8 +285,8 @@ export default function ReportModal({
                 rounded-xl border-2 border-dashed p-8 text-center cursor-pointer transition-all
                 ${
                   isDragging
-                    ? "border-accent bg-tint"
-                    : "border-line hover:border-accent hover:bg-tint"
+                    ? "border-brand bg-tint"
+                    : "border-line hover:border-brand hover:bg-tint"
                 }
               `}
             >
@@ -324,7 +324,7 @@ export default function ReportModal({
                       type="button"
                       onClick={() => removePreview(i)}
                       aria-label={`Remove photo ${i + 1}`}
-                      className="absolute top-1 right-1 bg-white/90 rounded-full w-5 h-5 text-xs flex items-center justify-center text-brand font-bold hover:bg-white transition-colors leading-none"
+                      className="absolute top-1 right-1 bg-card/90 rounded-full w-5 h-5 text-xs flex items-center justify-center text-brand font-bold hover:bg-card transition-colors leading-none"
                     >
                       <TbX aria-hidden />
                     </button>
@@ -339,7 +339,7 @@ export default function ReportModal({
               htmlFor="report-description"
               className="block text-xs font-bold uppercase tracking-widest text-muted mb-1.5"
             >
-              What happened? <span className="text-accent">*</span>
+              What happened? <span className="text-brand">*</span>
             </label>
             <textarea
               required
@@ -349,7 +349,7 @@ export default function ReportModal({
               onChange={handleChange}
               rows={5}
               placeholder="When did it happen? What kind of truck was it? Was the road closed?"
-              className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors resize-none"
+              className="w-full bg-card border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-brand transition-colors resize-none"
             />
           </div>
 

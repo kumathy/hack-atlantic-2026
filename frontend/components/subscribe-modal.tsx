@@ -92,7 +92,7 @@ function SubscribeForm({ onClose }: { onClose: () => void }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors"
+          className="w-full bg-card border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-brand transition-colors"
         />
         <button
           type="submit"

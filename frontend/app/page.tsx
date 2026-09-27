@@ -56,7 +56,7 @@ function Home() {
     <div className="flex flex-row flex-wrap items-center justify-center gap-3">
       <button
         onClick={() => setIsAlertsOpen(true)}
-        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-line text-brand font-bold rounded-full hover:border-accent transition-colors"
+        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-card border-2 border-line text-brand font-bold rounded-full hover:border-brand transition-colors"
       >
         <TbBell aria-hidden />
         Get Alerts
