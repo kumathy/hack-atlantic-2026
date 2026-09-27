@@ -40,6 +40,15 @@ function Home() {
   const [isAlertsOpen, setIsAlertsOpen] = useState(false);
   const isIncident = days === 0;
 
+  const view = days === null ? null : isIncident ? "incident" : "counter";
+  const [prevView, setPrevView] = useState(view);
+  const [viewChanged, setViewChanged] = useState(false);
+  if (view !== prevView) {
+    setPrevView(view);
+    if (prevView !== null) setViewChanged(true);
+  }
+  const fade = viewChanged ? "page-in" : "";
+
   const actions = (
     <div className="flex flex-row flex-wrap items-center justify-center gap-3">
       <button
@@ -63,7 +72,10 @@ function Home() {
 
   return (
     <main>
-      <section className="relative">
+      <section
+        key={isIncident ? "incident" : "counter"}
+        className={`relative ${fade}`}
+      >
         {days === null ? (
           <CounterPlaceholder />
         ) : isIncident ? (
@@ -89,7 +101,7 @@ function Home() {
       </section>
 
       {isIncident && (
-        <section id="detours" className="scroll-mt-16 pb-16">
+        <section id="detours" className={`scroll-mt-16 pb-16 ${fade}`}>
           <ClosureMap />
         </section>
       )}

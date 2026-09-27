@@ -6,20 +6,22 @@ import { fetchDetectedIncidents, mergeIncidents } from "./vibrations";
 
 const POLL_MS = 5_000;
 
+let cached: Incident[] | null = null;
+
 // null until the first check with the backend finishes
 export function useIncidents(): Incident[] | null {
-  const [incidents, setIncidents] = useState<Incident[] | null>(null);
+  const [incidents, setIncidents] = useState<Incident[] | null>(cached);
 
   useEffect(() => {
     let cancelled = false;
 
     async function load() {
       try {
-        const detected = await fetchDetectedIncidents();
-        if (!cancelled) setIncidents(mergeIncidents(detected));
+        cached = mergeIncidents(await fetchDetectedIncidents());
       } catch {
-        if (!cancelled) setIncidents((prev) => prev ?? INCIDENTS);
+        cached ??= INCIDENTS;
       }
+      if (!cancelled) setIncidents(cached);
     }
 
     load();
