@@ -15,6 +15,7 @@ Built with Next.js, TypeScript, Tailwind CSS, Leaflet, Flask, SQLite and Supabas
 ## Table of Contents
 
 - [Project Structure](#project-structure)
+- [Team](#team)
 - [Running Locally](#running-locally)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -40,6 +41,13 @@ Built with Next.js, TypeScript, Tailwind CSS, Leaflet, Flask, SQLite and Supabas
     ├── components/             # UI components
     └── lib/                    # Data and helpers
 ```
+
+## Team
+
+- **Anh Tran** (Frontend) - [@kumathy](https://github.com/kumathy)
+- **Kristyn Le** (Frontend) - [@kristynle0608](https://github.com/kristynle0608)
+- **Nguyen Thanh Khoi Tran** (Backend) - [@NguyenThanhKhoiTran](https://github.com/NguyenThanhKhoiTran)
+- **Xuan Phat Phan** (Hardware) - [@XuanPhat2008](https://github.com/XuanPhat2008)
 
 ## Running Locally
 
