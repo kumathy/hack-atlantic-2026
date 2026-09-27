@@ -3,7 +3,6 @@ import IncidentTimeline from "@/components/incident-timeline";
 import { BRIDGE, RECORDED_STRIKES } from "@/lib/incidents";
 
 export const metadata: Metadata = {
-  title: "Incident Timeline — Thorpe Watch",
   description: `${RECORDED_STRIKES.total} strikes recorded at the ${BRIDGE.name} since ${RECORDED_STRIKES.sinceYear}.`,
 };
 
