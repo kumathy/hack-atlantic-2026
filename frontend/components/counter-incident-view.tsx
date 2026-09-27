@@ -1,8 +1,10 @@
 import CounterLayout from "@/components/counter-layout";
 
 export default function CounterIncidentView({
+  time,
   children,
 }: {
+  time?: string;
   children?: React.ReactNode;
 }) {
   return (
@@ -30,7 +32,10 @@ export default function CounterIncidentView({
         <>
           <p className="text-subtle text-sm mt-2 mb-8">
             A truck hit the overpass on Waterloo Row{" "}
-            <strong className="text-muted">today</strong>.
+            <strong className="text-muted">
+              today{time && ` at ${time}`}
+            </strong>
+            .
           </p>
           {children}
         </>

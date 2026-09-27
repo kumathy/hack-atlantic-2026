@@ -1,5 +1,6 @@
 export interface Incident {
   date: string;
+  time?: string;
   damage: string;
   note: string;
   source?: { name: string; url: string };

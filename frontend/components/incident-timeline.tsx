@@ -14,6 +14,8 @@ const SPINE = "w-0.5 bg-line";
 
 export default function IncidentTimeline() {
   const incidents = useIncidents();
+  const [loadedLate] = useState(incidents === null);
+  const lateFade = loadedLate ? "page-in" : "";
   const total =
     RECORDED_STRIKES.total + (incidents?.length ?? 0) - INCIDENTS.length;
   const grouped = incidents ? groupByYear(incidents) : [];
@@ -43,14 +45,14 @@ export default function IncidentTimeline() {
           <h1 className="font-display font-black text-4xl text-ink mb-2">
             Incident Timeline
           </h1>
-          <p className={`text-muted text-sm ${incidents ? "" : "invisible"}`}>
+          <p className={`text-muted text-sm ${incidents ? lateFade : "invisible"}`}>
             {total} strikes recorded at the {BRIDGE.name} since{" "}
             {RECORDED_STRIKES.sinceYear}.
           </p>
         </div>
 
         {incidents && (
-          <div>
+          <div className={lateFade}>
             {grouped.map(([year, incidents], yearIndex) => (
               <section key={year}>
                 <div className="relative flex items-start pb-5">

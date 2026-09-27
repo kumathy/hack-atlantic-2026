@@ -27,11 +27,16 @@ export async function fetchDetectedIncidents(): Promise<Incident[]> {
   return rows
     .filter((row) => row.impact_time)
     .map((row) => {
-      const time = new Date(row.impact_time!);
+      const impact = new Date(row.impact_time!);
+      const time = impact.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+      });
       return {
-        date: toLocalDate(time),
+        date: toLocalDate(impact),
+        time,
         damage: "Impact detected",
-        note: `Picked up by the bridge's vibration sensor at ${time.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}.`,
+        note: `Picked up by the bridge's vibration sensor at ${time}.`,
       };
     });
 }

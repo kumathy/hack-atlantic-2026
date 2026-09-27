@@ -34,7 +34,8 @@ function usePreviewDays(days: number | null): number | null {
 }
 
 function Home() {
-  const lastIncidentDate = useIncidents()?.[0]?.date ?? null;
+  const latest = useIncidents()?.[0];
+  const lastIncidentDate = latest?.date ?? null;
   const days = usePreviewDays(useDaysSince(lastIncidentDate));
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isAlertsOpen, setIsAlertsOpen] = useState(false);
@@ -45,7 +46,7 @@ function Home() {
   const [viewChanged, setViewChanged] = useState(false);
   if (view !== prevView) {
     setPrevView(view);
-    if (prevView !== null) setViewChanged(true);
+    setViewChanged(true);
   }
   const fade = viewChanged ? "page-in" : "";
 
@@ -79,7 +80,7 @@ function Home() {
         {days === null ? (
           <CounterPlaceholder />
         ) : isIncident ? (
-          <CounterIncidentView>{actions}</CounterIncidentView>
+          <CounterIncidentView time={latest?.time}>{actions}</CounterIncidentView>
         ) : (
           <NormalDayView days={days} lastIncidentDate={lastIncidentDate!}>
             {actions}
