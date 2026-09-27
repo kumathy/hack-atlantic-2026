@@ -9,7 +9,7 @@ const ClosureMapLeaflet = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-full w-full bg-line/40" />
+      <div className="absolute inset-0 bg-line/40" />
     ),
   },
 );
@@ -18,7 +18,7 @@ export default function ClosureMap() {
   return (
     <section
       aria-labelledby="closure-heading"
-      className="mx-auto w-full max-w-3xl px-4"
+      className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4"
     >
       <h2
         id="closure-heading"
@@ -37,7 +37,7 @@ export default function ClosureMap() {
         ))}
       </ul>
 
-      <div className="relative z-0 h-80 overflow-hidden rounded-2xl border border-line sm:h-[28rem]">
+      <div className="relative z-0 min-h-80 flex-1 overflow-hidden rounded-2xl border border-line sm:min-h-48">
         <ClosureMapLeaflet />
       </div>
 

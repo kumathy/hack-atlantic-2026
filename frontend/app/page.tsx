@@ -8,6 +8,7 @@ import SubscribeModal from "@/components/subscribe-modal";
 import CounterPlaceholder from "@/components/counter-placeholder";
 import CounterIncidentView from "@/components/counter-incident-view";
 import ClosureMap from "@/components/closure-map";
+import IncidentDetails from "@/components/incident-details";
 import NormalDayView from "@/components/counter-normal-day";
 import { useDaysSince } from "@/lib/use-days-since";
 import { useIncidents } from "@/lib/use-incidents";
@@ -34,7 +35,8 @@ function usePreviewDays(days: number | null): number | null {
 }
 
 function Home() {
-  const latest = useIncidents()?.[0];
+  const incidents = useIncidents();
+  const latest = incidents?.[0];
   const lastIncidentDate = latest?.date ?? null;
   const days = usePreviewDays(useDaysSince(lastIncidentDate));
   const [isReportOpen, setIsReportOpen] = useState(false);
@@ -102,8 +104,9 @@ function Home() {
       </section>
 
       {isIncident && (
-        <section id="detours" className={`scroll-mt-16 pb-16 ${fade}`}>
+        <section id="detours" className={`flex min-h-[calc(100svh-3.5rem)] scroll-mt-14 flex-col pt-12 pb-12 ${fade}`}>
           <ClosureMap />
+          {incidents && <IncidentDetails incidents={incidents} />}
         </section>
       )}
 

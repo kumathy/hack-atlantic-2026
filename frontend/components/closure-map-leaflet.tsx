@@ -22,7 +22,7 @@ export default function ClosureMapLeaflet() {
       zoom={17}
       scrollWheelZoom={false}
       attributionControl={false}
-      className="h-full w-full"
+      className="absolute inset-0"
     >
       <AttributionControl
         prefix='<a href="https://leafletjs.com" target="_blank" rel="noopener noreferrer">Leaflet</a>'
