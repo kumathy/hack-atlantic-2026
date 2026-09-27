@@ -35,7 +35,7 @@ export async function fetchDetectedIncidents(): Promise<Incident[]> {
       return {
         date: toLocalDate(impact),
         time,
-        damage: "Impact detected",
+        damage: "Truck strike detected",
         note: `Picked up by the bridge's vibration sensor at ${time}.`,
       };
     });
