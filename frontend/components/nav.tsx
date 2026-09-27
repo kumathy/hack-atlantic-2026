@@ -36,7 +36,7 @@ export default function Nav() {
                 href={href}
                 aria-current={isActive ? "page" : undefined}
                 className={`
-                  inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all
+                  inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 rounded-full text-xs font-bold transition-all
                   ${
                     isActive
                       ? "bg-nav-fill text-white shadow-sm"
@@ -44,8 +44,8 @@ export default function Nav() {
                   }
                 `}
               >
-                <Icon aria-hidden className="text-sm" />
-                {label}
+                <Icon aria-hidden className="text-base sm:text-sm" />
+                <span className="sr-only sm:not-sr-only">{label}</span>
               </Link>
             );
           })}
