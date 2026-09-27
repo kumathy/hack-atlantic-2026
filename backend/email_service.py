@@ -11,6 +11,11 @@ SMTP_HOST = os.getenv("SMTP_HOST")
 SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
 SMTP_EMAIL = os.getenv("SMTP_EMAIL")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000").rstrip("/")
+
+
+def get_unsubscribe_url(recipient):
+    return f"{FRONTEND_URL}/api/unsubscribe?email={quote(recipient)}"
 
 
 def send_confirmation_email(recipient):
@@ -20,10 +25,7 @@ def send_confirmation_email(recipient):
     message["From"] = SMTP_EMAIL
     message["To"] = recipient
 
-    unsubscribe_url = (
-        f"http://127.0.0.1:5000/api/unsubscribe"
-        f"?email={quote(recipient)}"
-    )
+    unsubscribe_url = get_unsubscribe_url(recipient)
 
     message.set_content(f"""
 You're subscribed!
@@ -78,10 +80,7 @@ def send_impact_alert_email(recipient, impact_time):
     message["From"] = SMTP_EMAIL
     message["To"] = recipient
 
-    unsubscribe_url = (
-        f"http://127.0.0.1:5000/api/unsubscribe"
-        f"?email={quote(recipient)}"
-    )
+    unsubscribe_url = get_unsubscribe_url(recipient)
 
     message.set_content(f"""
 Critical Bridge Impact Detected

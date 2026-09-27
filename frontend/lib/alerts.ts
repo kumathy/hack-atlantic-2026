@@ -5,24 +5,19 @@ export type SubscribeResult =
 export async function subscribeToAlerts(
   email: string
 ): Promise<SubscribeResult> {
-  const response = await fetch(
-    "http://127.0.0.1:5000/api/subscribe",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-      }),
-    }
-  );
+  const response = await fetch("/api/subscribe", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to subscribe");
   }
 
-  const data = await response.json();
+  const data: { status: SubscribeResult } = await response.json();
 
   return data.status;
 }

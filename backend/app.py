@@ -8,6 +8,7 @@ from email_service import send_confirmation_email
 from notification_service import send_impact_alert
 from profiles_database import (
     init_db as init_profiles_db,
+    get_profile_by_email,
     subscribe_email,
     unsubscribe_email
 )
@@ -127,9 +128,10 @@ def reset_bridge_status():
 
 @app.route("/api/subscribe", methods=["POST"])
 def subscribe():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
 
-    email = data.get("email", "").strip()
+    raw_email = data.get("email", "")
+    email = raw_email.strip() if isinstance(raw_email, str) else ""
 
     if not email:
         return jsonify({
@@ -138,6 +140,13 @@ def subscribe():
         }), 400
 
     try:
+        existing_profile = get_profile_by_email(email)
+        if existing_profile and existing_profile["send_sub"]:
+            return jsonify({
+                "success": True,
+                "status": "already-subscribed"
+            }), 200
+
         # Add email to profiles.db and set send_sub = 1
         subscribe_email(email)
 
