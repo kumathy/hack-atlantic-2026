@@ -14,7 +14,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 bg-surface border-b-2 border-line">
+    <nav className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b-2 border-line">
       <div className="max-w-5xl mx-auto px-4 sm:px-8 flex items-center justify-between h-14">
         <Link href="/" className="flex items-center gap-2 group">
           <FaBridgeCircleExclamation
