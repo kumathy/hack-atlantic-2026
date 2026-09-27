@@ -12,7 +12,7 @@ const LINKS = [
 ];
 
 export default function Nav() {
-  const pathname = usePathname();
+  const pathname = usePathname().replace(/(.)\/$/, "$1");
 
   return (
     <nav className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b-2 border-line">
