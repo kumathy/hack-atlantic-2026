@@ -6,11 +6,20 @@
 
 <img width="1565" height="1420" alt="screenshot_20260927_031317" src="https://github.com/user-attachments/assets/b0aeec7d-2d00-4462-ad65-819bb3ff3416" />
 
-This project was built for [Hack Atlantic 2026](https://hack-atlantic-sep27.devpost.com/).
 
-Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row. Thorpe Watch counts the days since the last strike, switches to a live road closure view when a vibration sensor on the bridge detects a new one, emails subscribers, and keeps a public timeline of past incidents.
+<p align="center">This project was built for
+    <a href="https://hack-atlantic-sep27.devpost.com/">
+    Hack Atlantic 2026
+    </a>
+</p>
 
-Built with Next.js, TypeScript, Tailwind CSS, Leaflet, Flask, SQLite and Supabase.
+<p align="center">
+    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row. Thorpe Watch counts the days since the last strike, switches to a live road closure view when     a vibration sensor on the bridge detects a new one, emails subscribers, and keeps a public timeline of past incidents.
+</p>
+
+<p align="center">
+    Built with Next.js, TypeScript, Tailwind CSS, Leaflet, Flask, SQLite and Supabase.
+</p>
 
 ## Table of Contents
 
