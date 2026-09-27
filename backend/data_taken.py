@@ -60,7 +60,7 @@ def get_todays_critical_vibrations():
         rows = connection.execute("""
             SELECT *
             FROM critical_vibrations
-            WHERE date(impact_time) = date('now', 'localtime')
+            WHERE date(impact_time, 'localtime') = date('now', 'localtime')
             ORDER BY impact_time DESC
         """).fetchall()
 

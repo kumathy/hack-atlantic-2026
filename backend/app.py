@@ -15,7 +15,8 @@ from profiles_database import (
 from data_taken import (
     init_db as init_vibration_db,
     save_critical_vibration,
-    get_critical_vibrations
+    get_critical_vibrations,
+    get_todays_critical_vibrations
 )
 
 app = Flask(__name__)
@@ -62,20 +63,26 @@ def save_vibration():
             "status": bridge["status"]
         }), 200
 
-    # 1. Save new vibration to vibration.db
-    save_critical_vibration(
-        event_id=bridge["id"],
-        status=bridge["status"],
-        impact_time=bridge["impact_time"],
-        acknowledged=bridge["acknowledged"]
-    )
+    # Only 1 incident per day
+    already_logged = bool(get_todays_critical_vibrations())
 
-    print("New vibration added to vibration.db")
+    if already_logged:
+        print("Incident already logged today, skipping save and alerts")
+    else:
+        # 1. Save new vibration to vibration.db
+        save_critical_vibration(
+            event_id=bridge["id"],
+            status=bridge["status"],
+            impact_time=bridge["impact_time"],
+            acknowledged=bridge["acknowledged"]
+        )
 
-    # 2. Send email to subscribers
-    send_impact_alert(impact_time=bridge["impact_time"])
+        print("New vibration added to vibration.db")
 
-    print("Alert emails sent")
+        # 2. Send email to subscribers
+        send_impact_alert(impact_time=bridge["impact_time"])
+
+        print("Alert emails sent")
 
     # 3. PATCH Supabase after successful processing
     response = (
@@ -95,7 +102,11 @@ def save_vibration():
 
     return jsonify({
         "success": True,
-        "message": "Vibration saved and Supabase updated",
+        "message": (
+            "Incident already logged today, Supabase updated"
+            if already_logged
+            else "Vibration saved and Supabase updated"
+        ),
         "data": bridge
     }), 200
     
@@ -206,22 +217,26 @@ def monitor_bridge():
                 if bridge["status"] == "IMPACT_DETECTED":
                     print("🚨 IMPACT DETECTED!")
 
-                    # Save event
-                    save_critical_vibration(
-                        event_id=bridge["id"],
-                        status=bridge["status"],
-                        impact_time=bridge["impact_time"],
-                        acknowledged=bridge["acknowledged"]
-                    )
+                    # Only 1 incident per day
+                    if get_todays_critical_vibrations():
+                        print("[ ] Incident already logged today, skipping save and alerts")
+                    else:
+                        # Save event
+                        save_critical_vibration(
+                            event_id=bridge["id"],
+                            status=bridge["status"],
+                            impact_time=bridge["impact_time"],
+                            acknowledged=bridge["acknowledged"]
+                        )
 
-                    print("[X] Saved to vibration.db")
+                        print("[X] Saved to vibration.db")
 
-                    # Send notifications
-                    send_impact_alert(
-                        impact_time=bridge["impact_time"]
-                    )
+                        # Send notifications
+                        send_impact_alert(
+                            impact_time=bridge["impact_time"]
+                        )
 
-                    print("[X] Notifications processed")
+                        print("[X] Notifications processed")
 
                     # Automatically reset Supabase
                     supabase.table("bridge_status").update({
