@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBridgeCircleExclamation } from "react-icons/fa6";
-import { TbGauge, TbTimeline } from "react-icons/tb";
+import { TbHome, TbTimeline } from "react-icons/tb";
 
 const LINKS = [
-  { href: "/", label: "Counter", Icon: TbGauge },
+  { href: "/", label: "Home", Icon: TbHome },
   { href: "/timeline", label: "Timeline", Icon: TbTimeline },
 ];
 
