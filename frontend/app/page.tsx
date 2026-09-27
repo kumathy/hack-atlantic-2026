@@ -92,6 +92,15 @@ function Home() {
         {isIncident && (
           <a
             href="#detours"
+            onClick={(e) => {
+              e.preventDefault();
+              const reduceMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+              ).matches;
+              document.getElementById("detours")?.scrollIntoView({
+                behavior: reduceMotion ? "auto" : "smooth",
+              });
+            }}
             className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-xs font-semibold uppercase tracking-widest text-muted hover:text-brand transition-colors"
           >
             Road closure map
