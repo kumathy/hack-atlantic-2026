@@ -55,6 +55,12 @@ html {
     opacity: 0;
   }
 }
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
 @keyframes modal-in {
   from {
     opacity: 0;
@@ -66,6 +72,9 @@ html {
 }
 .modal-in {
   animation: modal-in 150ms ease-out both;
+}
+.page-in {
+  animation: page-in 300ms ease-out;
 }
 
 @keyframes wiggle {
@@ -87,6 +96,7 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .fade-in,
   .modal-in,
+  .page-in,
   .wiggle:hover {
     animation: none;
   }

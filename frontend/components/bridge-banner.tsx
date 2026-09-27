@@ -24,7 +24,10 @@ export default function BridgeBanner() {
       </a>
       {/* w-0 min-w-full keeps the caption from widening the image past the title */}
       <figcaption className="mt-1.5 w-0 min-w-full text-center text-xs italic text-subtle">
-        <span aria-hidden className="not-italic">📍</span> The {BRIDGE.name} over Waterloo Row, Fredericton.
+        <span aria-hidden className="not-italic">
+          📍
+        </span>{" "}
+        The {BRIDGE.name} over Waterloo Row, Fredericton, NB.
       </figcaption>
     </figure>
   );
