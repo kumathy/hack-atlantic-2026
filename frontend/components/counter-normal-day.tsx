@@ -17,18 +17,22 @@ export default function NormalDayView({
         </h1>
       }
       middle={
-        <div
-          className="font-counter font-black leading-none tabular-nums text-counter"
-          style={{ fontSize: "clamp(6rem,22vw,15rem)" }}
-        >
-          {days.toLocaleString()}
+        <div className="flex items-baseline gap-[clamp(0.5rem,1.75vw,1.25rem)] font-counter font-black leading-none text-counter">
+          <span
+            className="tabular-nums"
+            style={{ fontSize: "clamp(6rem,22vw,15rem)" }}
+          >
+            {days.toLocaleString()}
+          </span>
+          <span className="text-[clamp(1.75rem,6vw,4rem)]">
+            {days === 1 ? "day" : "days"}
+          </span>
         </div>
       }
       bottom={
         <>
           <p className="font-display italic text-[clamp(1rem,2.5vw,1.5rem)] text-muted mb-1">
-            {days === 1 ? "day" : "days"} since a truck hit the overpass on
-            Waterloo Row
+            since a truck hit the overpass on Waterloo Row
           </p>
           <p className="text-subtle text-sm mt-2 mb-8">
             Last incident:{" "}
