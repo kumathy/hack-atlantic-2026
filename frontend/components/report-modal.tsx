@@ -9,6 +9,7 @@ import {
   TbSend,
   TbX,
 } from "react-icons/tb";
+import { subscribeToAlerts } from "@/lib/alerts";
 
 type FormState = "idle" | "submitting" | "success";
 
@@ -22,6 +23,8 @@ export default function ReportModal({
   const [formState, setFormState] = useState<FormState>("idle");
   const [previews, setPreviews] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", email: "", description: "" });
+  const [wantsAlerts, setWantsAlerts] = useState(false);
+  const [alertsFailed, setAlertsFailed] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -86,13 +89,19 @@ export default function ReportModal({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setFormState("submitting");
-    await new Promise((r) => setTimeout(r, 1400));
+    const [, alerts] = await Promise.allSettled([
+      new Promise((r) => setTimeout(r, 1400)),
+      wantsAlerts ? subscribeToAlerts(form.email.trim()) : null,
+    ]);
+    setAlertsFailed(alerts.status === "rejected");
     setFormState("success");
   }
 
   function resetForm() {
     setFormState("idle");
     setForm({ name: "", email: "", description: "" });
+    setWantsAlerts(false);
+    setAlertsFailed(false);
     previews.forEach((url) => URL.revokeObjectURL(url));
     setPreviews([]);
   }
@@ -141,6 +150,13 @@ export default function ReportModal({
             Thanks for your report. We&rsquo;ll review it and update the
             timeline.
           </p>
+          {wantsAlerts && (
+            <p className="mt-2 text-muted text-sm leading-relaxed">
+              {alertsFailed
+                ? "We couldn't subscribe you to incident alerts. Please try again from the home page."
+                : "You're now subscribed to incident alerts."}
+            </p>
+          )}
           <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
             <button
               onClick={resetForm}
@@ -330,6 +346,16 @@ export default function ReportModal({
               className="w-full bg-white border-2 border-line rounded-xl px-4 py-3 text-sm text-ink placeholder-hint focus:outline-none focus:border-accent transition-colors resize-none"
             />
           </div>
+
+          <label className="flex items-center gap-3 text-sm text-muted cursor-pointer">
+            <input
+              type="checkbox"
+              checked={wantsAlerts}
+              onChange={(e) => setWantsAlerts(e.target.checked)}
+              className="h-4 w-4 shrink-0 accent-accent cursor-pointer"
+            />
+            Email me for incident alerts
+          </label>
 
           <button
             type="submit"

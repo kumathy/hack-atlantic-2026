@@ -12,7 +12,7 @@ export default function NormalDayView({
   return (
     <CounterLayout
       top={
-        <h1 className="font-display font-black text-[clamp(2.5rem,8vw,4.5rem)] leading-tight text-ink">
+        <h1 className="font-display font-black text-[clamp(2.25rem,7vw,3.75rem)] leading-tight text-ink">
           Thorpe Watch
         </h1>
       }
