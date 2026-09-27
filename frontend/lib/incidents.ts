@@ -7,7 +7,6 @@ export interface Incident {
 
 export const BRIDGE = {
   name: "Bill Thorpe Walking Bridge",
-  location: "Waterloo Row underpass, Fredericton NB",
   wikipedia: "https://en.wikipedia.org/wiki/Bill_Thorpe_Walking_Bridge",
 };
 

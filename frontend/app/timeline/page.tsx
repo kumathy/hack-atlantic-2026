@@ -9,7 +9,7 @@ import { BRIDGE, INCIDENTS, RECORDED_STRIKES } from "@/lib/incidents";
 const RAIL = "absolute left-[4.5rem] sm:left-[6rem] -translate-x-1/2";
 const SPINE = "w-0.5 bg-line";
 
-const SUMMARY =`${RECORDED_STRIKES.total} strikes recorded since ${RECORDED_STRIKES.sinceYear}.`;
+const SUMMARY = `${RECORDED_STRIKES.total} strikes recorded at the ${BRIDGE.name} since ${RECORDED_STRIKES.sinceYear}.`;
 
 export const metadata: Metadata = {
   title: "Incident Timeline — Thorpe Watch",
@@ -30,9 +30,6 @@ export default function TimelinePage() {
           <h1 className="font-display font-black text-4xl text-ink mb-2">
             Incident Timeline
           </h1>
-          <p className="text-xs font-semibold uppercase tracking-widest text-subtle mb-2">
-            {BRIDGE.name} · {BRIDGE.location}
-          </p>
           <p className="text-muted text-sm">
             {SUMMARY}
           </p>
