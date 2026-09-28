@@ -7,7 +7,13 @@
 </p>
 
 <p align="center">
-    <img width="1565" height="1420" alt="screenshot_20260927_031317" src="https://github.com/user-attachments/assets/b0aeec7d-2d00-4462-ad65-819bb3ff3416" />
+    <a href="https://kumathy.github.io/thorpe-watch/">
+        <img width="1565" height="1420" alt="screenshot_20260927_031317" src="https://github.com/user-attachments/assets/b0aeec7d-2d00-4462-ad65-819bb3ff3416" />
+    </a>
+</p>
+
+<p align="center">
+    <a href="https://kumathy.github.io/thorpe-watch/">Live demo</a>
 </p>
 
 <p align="center">
