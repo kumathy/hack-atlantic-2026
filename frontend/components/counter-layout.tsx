@@ -13,7 +13,7 @@ export default function CounterLayout({
 }) {
   return (
     <div
-      className={`flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center px-4 pt-6 text-center ${
+      className={`flex min-h-[calc(100svh-var(--nav-h))] flex-col items-center justify-center px-4 pt-6 text-center ${
         reserveBottom ? "pb-[5.75rem]" : "pb-6"
       }`}
     >

@@ -1,3 +1,7 @@
+import { DEMO_MODE } from "./demo-mode";
+
+const demoDelay = () => new Promise((resolve) => setTimeout(resolve, 600));
+
 export type SubscribeResult =
   | "subscribed"
   | "already-subscribed";
@@ -7,6 +11,11 @@ export async function submitReportProfile(
   email: string,
   sendSub: boolean
 ) {
+  if (DEMO_MODE) {
+    await demoDelay();
+    return { success: true };
+  }
+
   const response = await fetch(
     "http://127.0.0.1:5000/api/subscribe",
     {
@@ -32,6 +41,11 @@ export async function submitReportProfile(
 export async function subscribeToAlerts(
   email: string
 ): Promise<SubscribeResult> {
+  if (DEMO_MODE) {
+    await demoDelay();
+    return "subscribed";
+  }
+
   const response = await fetch(
     "http://127.0.0.1:5000/api/subscribe",
     {

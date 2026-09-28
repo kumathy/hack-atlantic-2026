@@ -51,6 +51,13 @@
   --color-alert: #893e48;
 }
 
+:root {
+  --nav-h: 3.5rem;
+}
+[data-demo] {
+  --nav-h: 5.75rem;
+}
+
 html {
   background-color: var(--color-surface);
 }

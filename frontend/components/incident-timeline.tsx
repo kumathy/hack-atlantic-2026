@@ -25,16 +25,13 @@ export default function IncidentTimeline() {
   const [updates, setUpdates] = useState(0);
   if (dates !== prevDates) {
     setPrevDates(dates);
-    if (prevDates !== null && dates !== null) {
-      const known = new Set(prevDates.split(","));
-      if (dates.split(",").some((d) => !known.has(d))) setUpdates((n) => n + 1);
-    }
+    if (prevDates !== null && dates !== null) setUpdates((n) => n + 1);
   }
 
   return (
     <main
       key={updates}
-      className={`min-h-[calc(100vh-3.5rem)] px-4 pt-16 pb-20 sm:px-6 sm:py-12 ${updates ? "page-in" : ""}`}
+      className={`min-h-[calc(100svh-var(--nav-h))] px-4 pt-16 pb-20 sm:px-6 sm:py-12 ${updates ? "page-in" : ""}`}
     >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">

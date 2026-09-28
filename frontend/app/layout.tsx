@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Nav from "@/components/nav";
+import { DEMO_MODE } from "@/lib/demo-mode";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,6 +34,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${fraunces.variable}`}
+      data-demo={DEMO_MODE ? "" : undefined}
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-surface text-ink font-body">

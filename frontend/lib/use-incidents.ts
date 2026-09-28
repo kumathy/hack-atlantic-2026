@@ -1,15 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDemoLiveSince } from "./demo";
+import { DEMO_MODE } from "./demo-mode";
 import { INCIDENTS, type Incident } from "./incidents";
-import { fetchDetectedIncidents, mergeIncidents } from "./vibrations";
+import {
+  detectedIncident,
+  fetchDetectedIncidents,
+  mergeIncidents,
+} from "./vibrations";
 
 const POLL_MS = 5_000;
 
 let cached: Incident[] | null = null;
 
 // null until the first check with the backend finishes
-export function useIncidents(): Incident[] | null {
+function useLiveIncidents(): Incident[] | null {
   const [incidents, setIncidents] = useState<Incident[] | null>(cached);
 
   useEffect(() => {
@@ -34,3 +40,18 @@ export function useIncidents(): Incident[] | null {
 
   return incidents;
 }
+
+function useDemoIncidents(): Incident[] {
+  const liveSince = useDemoLiveSince();
+  return useMemo(
+    () =>
+      liveSince === null
+        ? INCIDENTS
+        : mergeIncidents([detectedIncident(new Date(liveSince))]),
+    [liveSince],
+  );
+}
+
+export const useIncidents: () => Incident[] | null = DEMO_MODE
+  ? useDemoIncidents
+  : useLiveIncidents;

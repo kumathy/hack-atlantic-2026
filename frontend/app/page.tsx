@@ -113,7 +113,7 @@ function Home() {
       </section>
 
       {isIncident && (
-        <section id="detours" className={`flex min-h-[calc(100svh-3.5rem)] scroll-mt-14 flex-col pt-12 pb-12 ${fade}`}>
+        <section id="detours" className={`flex min-h-[calc(100svh-var(--nav-h))] scroll-mt-[var(--nav-h)] flex-col pt-12 pb-12 ${fade}`}>
           <ClosureMap />
           {incidents && <IncidentDetails incidents={incidents} />}
         </section>

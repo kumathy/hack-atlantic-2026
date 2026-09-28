@@ -37,6 +37,7 @@ jobs:
       - run: npm run build
         env:
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_DEMO_MODE: "true"
 
       - uses: actions/upload-pages-artifact@v3
         with:

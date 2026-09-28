@@ -26,19 +26,20 @@ export async function fetchDetectedIncidents(): Promise<Incident[]> {
 
   return rows
     .filter((row) => row.impact_time)
-    .map((row) => {
-      const impact = new Date(row.impact_time!);
-      const time = impact.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-      });
-      return {
-        date: toLocalDate(impact),
-        time,
-        damage: "Truck strike detected",
-        note: `Picked up by the bridge's vibration sensor at ${time}.`,
-      };
-    });
+    .map((row) => detectedIncident(new Date(row.impact_time!)));
+}
+
+export function detectedIncident(impact: Date): Incident {
+  const time = impact.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+  return {
+    date: toLocalDate(impact),
+    time,
+    damage: "Truck strike detected",
+    note: `Picked up by the bridge's vibration sensor at ${time}.`,
+  };
 }
 
 // Newest first, one entry per day

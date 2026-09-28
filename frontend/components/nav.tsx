@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { FaBridgeCircleExclamation } from "react-icons/fa6";
 import { TbHome, TbTimeline } from "react-icons/tb";
 import ThemeToggle from "@/components/theme-toggle";
+import DemoSwitch from "@/components/demo-switch";
+import { DEMO_MODE } from "@/lib/demo-mode";
 
 const LINKS = [
   { href: "/", label: "Home", Icon: TbHome },
@@ -15,7 +17,7 @@ export default function Nav() {
   const pathname = usePathname().replace(/(.)\/$/, "$1");
 
   return (
-    <nav className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b-2 border-line">
+    <nav className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-line">
       <div className="max-w-5xl mx-auto px-4 sm:px-8 flex items-center justify-between h-14">
         <Link href="/" className="flex items-center gap-2 group">
           <FaBridgeCircleExclamation
@@ -52,6 +54,7 @@ export default function Nav() {
           <ThemeToggle />
         </div>
       </div>
+      {DEMO_MODE && <DemoSwitch />}
     </nav>
   );
 }
