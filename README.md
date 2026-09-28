@@ -17,6 +17,14 @@
 </p>
 
 <p align="center">
+    <a href="https://www.youtube.com/watch?v=fuM3vCbOW_U">
+        <img width="640" alt="Thorpe Watch hardware demo video" src="https://img.youtube.com/vi/fuM3vCbOW_U/maxresdefault.jpg" />
+    </a>
+    <br />
+    <sub>▶ Hardware demo: ESP32 + vibration sensor</sub>
+</p>
+
+<p align="center">
     🏅 Finalist at <a href="https://hack-atlantic-sep27.devpost.com/">Hack Atlantic 2026</a> · <a href="https://kumathy.github.io/thorpe-watch/">Live demo</a> · <a href="https://devpost.com/software/thorpe-watch">Devpost</a>
 </p>
 
