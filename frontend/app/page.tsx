@@ -2,7 +2,12 @@
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { TbAlertTriangle, TbBell, TbChevronDown } from "react-icons/tb";
+import {
+  TbAlertTriangle,
+  TbBell,
+  TbChevronDown,
+  TbChevronUp,
+} from "react-icons/tb";
 import ReportModal from "@/components/report-modal";
 import SubscribeModal from "@/components/subscribe-modal";
 import CounterPlaceholder from "@/components/counter-placeholder";
@@ -12,6 +17,12 @@ import IncidentDetails from "@/components/incident-details";
 import NormalDayView from "@/components/counter-normal-day";
 import { useDaysSince } from "@/lib/use-days-since";
 import { useIncidents } from "@/lib/use-incidents";
+
+function scrollBehavior(): ScrollBehavior {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? "auto"
+    : "smooth";
+}
 
 export default function HomePage() {
   return (
@@ -94,12 +105,9 @@ function Home() {
             href="#detours"
             onClick={(e) => {
               e.preventDefault();
-              const reduceMotion = window.matchMedia(
-                "(prefers-reduced-motion: reduce)",
-              ).matches;
-              document.getElementById("detours")?.scrollIntoView({
-                behavior: reduceMotion ? "auto" : "smooth",
-              });
+              document
+                .getElementById("detours")
+                ?.scrollIntoView({ behavior: scrollBehavior() });
             }}
             className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-xs font-semibold uppercase tracking-widest text-muted hover:text-brand transition-colors"
           >
@@ -116,6 +124,17 @@ function Home() {
         <section id="detours" className={`flex min-h-[calc(100svh-var(--nav-h))] scroll-mt-[var(--nav-h)] flex-col pt-12 pb-12 ${fade}`}>
           <ClosureMap />
           {incidents && <IncidentDetails incidents={incidents} />}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: scrollBehavior() });
+            }}
+            className="mx-auto mt-10 inline-flex flex-col items-center gap-1 text-xs font-semibold uppercase tracking-widest text-muted hover:text-brand transition-colors"
+          >
+            <TbChevronUp aria-hidden className="text-2xl" />
+            Back to top
+          </a>
         </section>
       )}
 
