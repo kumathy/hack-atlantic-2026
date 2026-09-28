@@ -3,7 +3,11 @@
 <h3 align="center">Real-time monitoring for Fredericton's most-hit overpass</h3>
 
 <p align="center">
-    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row, and it's become kind of a local meme. Thorpe Watch keeps a public record of past hits, catches new incidents live with a proof-of-concept vibration sensor that can be attached to the bridge, and alerts subscribers in real time.
+    Trucks keep getting
+    <a href="https://www.cbc.ca/news/canada/new-brunswick/truck-stuck-under-fredericton-bridge-1.7638726">stuck</a>
+    under the overpass of the
+    <a href="https://en.wikipedia.org/wiki/Fredericton_Railway_Bridge">Bill Thorpe Walking Bridge</a>
+    on Waterloo Row, and it's become kind of a local meme. Thorpe Watch keeps a public record of past hits, catches new incidents live with a proof-of-concept vibration sensor that can be attached to the bridge, and alerts subscribers in real time.
 </p>
 
 <p align="center">
