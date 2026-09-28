@@ -1,18 +1,17 @@
-# <p align="center">🌉 Thorpe Watch</p>
+<h1 align="center">🌉 Thorpe Watch</h1>
 
 <h3 align="center">Real-time monitoring for Fredericton's most-hit overpass</h3>
 
-<img width="1565" height="1420" alt="screenshot_20260927_031317" src="https://github.com/user-attachments/assets/b0aeec7d-2d00-4462-ad65-819bb3ff3416" />
-
-
-<p align="center">This project was built for
-    <a href="https://hack-atlantic-sep27.devpost.com/">
-    Hack Atlantic 2026
-    </a>
+<p align="center">
+    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row, and it's become kind of a local meme. Thorpe Watch keeps a public record of past hits, catches new incidents live with a proof-of-concept vibration sensor that can be attached to the bridge, and alerts subscribers in real time.
 </p>
 
 <p align="center">
-    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row, and it's become kind of a local meme. Thorpe Watch keeps a public record of past hits, catches new incidents live with a proof-of-concept vibration sensor that can be attached to the bridge, and alerts subscribers in real time.
+    <img width="1565" height="1420" alt="screenshot_20260927_031317" src="https://github.com/user-attachments/assets/b0aeec7d-2d00-4462-ad65-819bb3ff3416" />
+</p>
+
+<p align="center">
+    Finalist at <a href="https://hack-atlantic-sep27.devpost.com/">Hack Atlantic 2026</a>
 </p>
 
 <p align="center">
