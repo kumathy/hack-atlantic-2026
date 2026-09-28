@@ -31,7 +31,7 @@
         <img width="640" alt="Thorpe Watch hardware demo video" src="https://img.youtube.com/vi/fuM3vCbOW_U/maxresdefault.jpg" />
     </a>
     <br />
-    <sub>▶ Hardware demo: ESP32 + vibration sensor</sub>
+    <sub>Hardware demo: ESP32 + vibration sensor</sub>
 </p>
 
 ## Table of Contents
