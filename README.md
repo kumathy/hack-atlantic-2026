@@ -13,11 +13,7 @@
 </p>
 
 <p align="center">
-    <a href="https://kumathy.github.io/thorpe-watch/">Live demo</a>
-</p>
-
-<p align="center">
-    Finalist at <a href="https://hack-atlantic-sep27.devpost.com/">Hack Atlantic 2026</a>
+    Finalist at <a href="https://hack-atlantic-sep27.devpost.com/">Hack Atlantic 2026</a> · <a href="https://kumathy.github.io/thorpe-watch/">Live demo</a>
 </p>
 
 <p align="center">
