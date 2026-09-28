@@ -109,7 +109,7 @@ function Home() {
                 .getElementById("detours")
                 ?.scrollIntoView({ behavior: scrollBehavior() });
             }}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-xs font-semibold uppercase tracking-widest text-muted hover:text-brand transition-colors"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 whitespace-nowrap text-xs font-semibold uppercase tracking-widest text-muted hover:text-brand transition-colors"
           >
             Road closures &amp; details
             <TbChevronDown
