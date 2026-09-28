@@ -1,8 +1,6 @@
-# <p align="center">Thorpe Watch</p>
+# <p align="center">🌉 Thorpe Watch</p>
 
-<p align="center">
-    Tracking truck strikes at the overpass of the Bill Thorpe Walking Bridge in Fredericton, NB
-</p>
+<h3 align="center">Real-time monitoring for Fredericton's most-hit overpass</h3>
 
 <img width="1565" height="1420" alt="screenshot_20260927_031317" src="https://github.com/user-attachments/assets/b0aeec7d-2d00-4462-ad65-819bb3ff3416" />
 
@@ -14,7 +12,7 @@
 </p>
 
 <p align="center">
-    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row and became kind of a meme. Thorpe Watch counts the days since the last hit, switches to a live road closure view when a vibration sensor on the bridge detects a new one, emails subscribers, and keeps a public timeline of past incidents.
+    Trucks keep getting stuck under the overpass of the Bill Thorpe Walking Bridge on Waterloo Row, and it's become kind of a local meme. Thorpe Watch keeps a public record of past hits, catches new incidents live with a proof-of-concept vibration sensor that can be attached to the bridge, and alerts subscribers in real time.
 </p>
 
 <p align="center">
