@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBridgeCircleExclamation } from "react-icons/fa6";
-import { TbHome, TbTimeline } from "react-icons/tb";
+import { TbBrandGithub, TbHome, TbTimeline } from "react-icons/tb";
 import ThemeToggle from "@/components/theme-toggle";
 import DemoSwitch from "@/components/demo-switch";
 import { DEMO_MODE } from "@/lib/demo-mode";
@@ -51,6 +51,16 @@ export default function Nav() {
               </Link>
             );
           })}
+          <span aria-hidden className="mx-1 h-5 w-px bg-line" />
+          <a
+            href="https://github.com/kumathy/thorpe-watch"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View source on GitHub"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full text-base text-muted transition-colors hover:bg-tint hover:text-nav"
+          >
+            <TbBrandGithub aria-hidden />
+          </a>
           <ThemeToggle />
         </div>
       </div>
