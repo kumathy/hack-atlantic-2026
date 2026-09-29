@@ -37,10 +37,10 @@
 ## Table of Contents
 
 - [Project Structure](#project-structure)
-- [Team](#team)
 - [Running Locally](#running-locally)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+- [Team](#team)
 
 ## Project Structure
 
@@ -63,13 +63,6 @@
     ├── components/             # UI components
     └── lib/                    # Data and helpers
 ```
-
-## Team
-
-- **Anh Tran** (Frontend) - [@kumathy](https://github.com/kumathy)
-- **Kristyn Le** (Frontend) - [@kristynle0608](https://github.com/kristynle0608)
-- **Nguyen Thanh Khoi Tran** (Backend) - [@NguyenThanhKhoiTran](https://github.com/NguyenThanhKhoiTran)
-- **Xuan Phat Phan** (Hardware) - [@XuanPhat2008](https://github.com/XuanPhat2008)
 
 ## Running Locally
 
@@ -131,3 +124,10 @@ npm run dev
 Open `http://localhost:3000`. The frontend expects the backend at `http://127.0.0.1:5000`.
 
 To preview the live incident view without triggering the sensor, open `http://localhost:3000/?view=incident` (development only).
+
+## Team
+
+- **Anh Tran** (Frontend) - [@kumathy](https://github.com/kumathy)
+- **Kristyn Le** (Frontend) - [@kristynle0608](https://github.com/kristynle0608)
+- **Nguyen Thanh Khoi Tran** (Backend) - [@NguyenThanhKhoiTran](https://github.com/NguyenThanhKhoiTran)
+- **Xuan Phat Phan** (Hardware) - [@XuanPhat2008](https://github.com/XuanPhat2008)
